@@ -157,6 +157,15 @@ function calculerTotalDepenseParPassager(reservations) {
    */
   // TODO
 
+  let total = 0;
+
+  for (let reservation of reservations) {
+    if (reservation.statut !== "annule") {
+      total = total + reservation.trajet.prix_place;
+    }
+  }
+
+  return total;
 }
 
 // ============================================================================
