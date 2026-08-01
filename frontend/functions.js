@@ -123,6 +123,72 @@ function formaterMessageConfirmation(
    *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
    */
   // TODO
+    /**
+     * Valide le formulaire de proposition de trajet.
+     * @param {Object} formulaire - avec les clés : quartier_depart,
+     *   quartier_arrivee, heure, places_dispo, prix_place
+     * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
+     *
+     * Règles :
+     * - quartier_depart et quartier_arrivee obligatoires et différents
+     * - heure obligatoire au format "HH:MM"
+     * - places_dispo entre 1 et 8
+     * - prix_place > 0
+     */
+    // TODO
+
+    // on déclare nos constantes (tableau d'erreurs et regex pour l'heure)
+    const erreurs = [];
+    const heureValide = /^([01]\d|2[0-3]):([0-5]\d)$/.test(formulaire.heure);
+
+    // vérification des quartiers
+    if(!formulaire.quartier_depart || !formulaire.quartier_arrivee){
+        erreurs.push("Les quartiers de départ et d'arrivée sont obligatoires.");
+    }
+    else if(formulaire.quartier_depart === formulaire.quartier_arrivee){
+        erreurs.push("Le quartier de départ doit être différent du quartier d'arrivée.");
+    }
+
+    // Vérification du format de l'heure (on va utiliser l'expression régulière)
+    if (!formulaire.heure || !heureValide) {
+        erreurs.push("L'heure est obligatoire et doit être au format \"HH:MM\"."); //échapée avec back-slash pour que les griffes soient affichées.
+    }
+
+    // on convertit d'abord en number avant de vérifier, car un input HTML (même type number) return tjrs un string
+    const places = Number(formulaire.places_dispo);
+    
+    // ensuite on peut vérifier le nombre de places disponibles !
+    if( (Number.isNaN(places) ) || places < 1 || places > 8) {
+        erreurs.push("Le nombre de places doit être compris entre 1 et 8.");
+    }
+
+    // d'abord on convertit le prix d'une place en number.
+    const prix = Number(formulaire.prix_place);
+
+    // ensuite on vérifie le prix par place !
+    if (Number.isNaN(prix) || prix <= 0) {
+        erreurs.push("Le prix par place doit être supérieur à 0.");
+    }
+
+    // on return enfin le résultat de la validation (une liste d'erreurs et un booléen indiquant si le formulaire est valide ou non)
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
+}
+
+function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure) {
+    /**
+     * Génère le message de confirmation après réservation.
+     * @return {string} - message formaté
+     * Exemple :
+     *   formaterMessageConfirmation("Marie", "Bacongo", "Poto-Poto", "07:30")
+     *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
+     */
+    // TODO
+
+    // on utilise les literaux de gabarits (backticks + ${}) pour formater le message de confirmation !
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================

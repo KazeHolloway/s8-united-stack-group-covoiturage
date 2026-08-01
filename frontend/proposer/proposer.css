@@ -1,0 +1,220 @@
+:root {
+    --bleu-marine: #1e3a5f;
+    --bleu-marine-clair: #2c4c78;
+    --orange: #e8792e;
+    --orange-hover: #d5691f;
+    --fond-clair: #f4f7fb;
+    --blanc: #ffffff;
+    --texte-fonce: #1f2937;
+    --texte-gris: #6b7280;
+    --bordure: #dbe2ea;
+    --aide-fond: #eaf1fb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body#page-proposer {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--fond-clair);
+    color: var(--texte-fonce);
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: var(--bleu-marine);
+    color: var(--blanc);
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px;
+}
+
+.sidebar-logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 32px 0;
+}
+
+.sidebar-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex-grow: 1;
+}
+
+.sidebar-links a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: #cdd8e6;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.sidebar-links a:hover {
+    background-color: var(--bleu-marine-clair);
+    color: var(--blanc);
+}
+
+.sidebar-links a.active {
+    background-color: var(--bleu-marine-clair);
+    color: var(--blanc);
+    font-weight: 600;
+}
+
+#nav-session {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
+    margin-top: 16px;
+    color: var(--blanc);
+    font-size: 0.9rem;
+}
+
+#nav-session a {
+    color: #cdd8e6;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+
+#nav-session a:hover {
+    color: var(--blanc);
+}
+
+/* ---------- Contenu principal ---------- */
+
+main {
+    flex-grow: 1;
+    padding: 40px 48px;
+}
+
+main h1 {
+    margin: 0 0 24px 0;
+    font-size: 1.6rem;
+}
+
+/* ---------- Formulaire ---------- */
+
+#form-proposer {
+    background-color: var(--blanc);
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 640px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--texte-gris);
+}
+
+select, input[type="text"], input[type="number"] {
+    padding: 10px 12px;
+    border: 1px solid var(--bordure);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--texte-fonce);
+    background-color: var(--blanc);
+}
+
+select:focus, input:focus {
+    outline: none;
+    border-color: var(--orange);
+}
+
+button[type="submit"] {
+    background-color: var(--orange);
+    color: var(--blanc);
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--orange-hover);
+}
+
+/* ---------- Erreurs ---------- */
+
+.erreurs-form {
+    max-width: 640px;
+    margin-top: 16px;
+    background-color: #fdecea;
+    border: 1px solid #f5b5ac;
+    border-radius: 8px;
+    padding: 16px 20px;
+    color: #a12b1f;
+}
+
+.erreurs-form ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+/* ---------- Bloc d'aide ---------- */
+
+.bloc-aide {
+    max-width: 640px;
+    margin-top: 20px;
+    background-color: var(--aide-fond);
+    border-radius: 10px;
+    padding: 18px 20px;
+    color: #33526f;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.bloc-aide p {
+    margin: 0;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+    body#page-proposer {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 20px;
+    }
+
+    main {
+        padding: 24px 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+}
