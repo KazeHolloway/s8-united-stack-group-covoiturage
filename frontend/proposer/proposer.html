@@ -9,11 +9,26 @@
 <body id="page-proposer">
 
   <!-- NAVIGATION — TODO (Dev FS4) -->
+  <nav class="sidebar">
+    <p class="sidebar-logo">BraCovoit</p>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+    <ul class="sidebar-links">
+      <li><a href="../accueil/index.html">Accueil</a></li>
+      <li><a href="../recherche/recherche.html">Rechercher</a></li>
+      <li><a href="../trajet/trajet.html">Détail trajet</a></li>
+      <li><a href="proposer.html" class="active">Proposer un trajet</a></li>
+      <li><a href="../mes-trajets/mes-trajets.html">Mes trajets</a></li>
+      <li><a href="../dashboard/dashboard.html">Dashboard conducteur</a></li>
+      <li><a href="../confirmation/confirmation.html">Confirmation</a></li>
+      <li><a href="../login/login.html">Authentification</a></li>
+    </ul>
+
+    <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+    <div id="nav-session"></div>
+  </nav>  
 
   <main>
+    <h1>Proposer un trajet</h1>
     <!-- =====================================================================
          FORMULAIRE — TODO (Dev FS4)
          Mettre en forme le formulaire de proposition de trajet : les deux
@@ -25,20 +40,34 @@
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
     <form id="form-proposer">
-      <label for="p-depart">Quartier de départ</label>
-      <select id="p-depart"></select>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="p-depart">Quartier de départ</label>
+          <select id="p-depart"></select>
+        </div>
 
-      <label for="p-arrivee">Quartier d'arrivée</label>
-      <select id="p-arrivee"></select>
+        <div class="form-field">
+          <label for="p-arrivee">Quartier d'arrivée</label>
+          <select id="p-arrivee"></select>
+        </div>
+      </div>
 
-      <label for="p-heure">Heure (HH:MM)</label>
-      <input type="text" id="p-heure" placeholder="07:30">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="p-heure">Heure (HH:MM)</label>
+          <input type="text" id="p-heure" placeholder="07:30">
+        </div>
 
-      <label for="p-places">Places disponibles</label>
-      <input type="number" id="p-places" min="1" max="8">
+        <div class="form-field">
+          <label for="p-places">Places disponibles</label>
+          <input type="number" id="p-places" min="1" max="8">
+        </div>
+      </div>
 
-      <label for="p-prix">Prix par place (FCFA)</label>
-      <input type="number" id="p-prix" min="1">
+      <div class="form-field">
+        <label for="p-prix">Prix par place (FCFA)</label>
+        <input type="number" id="p-prix" min="1">
+      </div>
 
       <button type="submit">Publier mon trajet</button>
     </form>
@@ -46,10 +75,13 @@
     <!-- Zone d'erreurs de validation — TODO (Dev FS4) : mettre en forme la
          liste <ul><li> injectée par main.js en cas de formulaire invalide.
          NE PAS MODIFIER l'id. -->
-    <div id="erreurs-form" hidden></div>
+    <div id="erreurs-form" class="erreurs-form" hidden></div>
 
     <!-- BLOC D'AIDE — TODO (Dev FS4) : encart explicatif optionnel
          (ex. rappel que le prix est libre, conseils de sécurité) -->
+    <aside class="bloc-aide">
+      <p>Le prix est libre ! Fixez-le selon la distance et le carburant. Partagez votre position uniquement avec vos passagers confirmés.</p>
+    </aside>
   </main>
 
   <div id="erreur-globale" hidden></div>
