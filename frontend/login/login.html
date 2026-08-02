@@ -9,10 +9,23 @@
 <body id="page-login">
 
   <!-- NAVIGATION — TODO (Dev FS7) -->
+<nav class="sidebar">
+    <p class="sidebar-logo">BraCovoit</p>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+    <ul class="sidebar-links">
+      <li><a href="../accueil/index.html">Accueil</a></li>
+      <li><a href="../recherche/recherche.html">Rechercher</a></li>
+      <li><a href="../trajet/trajet.html">Détail trajet</a></li>
+      <li><a href="../proposer/proposer.html">Proposer un trajet</a></li>
+      <li><a href="../mes-trajets/mes-trajets.html">Mes trajets</a></li>
+      <li><a href="../dashboard/dashboard.html">Dashboard conducteur</a></li>
+      <li><a href="../confirmation/confirmation.html">Confirmation</a></li>
+      <li><a href="../inscription/inscription.html">Inscription</a></li>
+      <li><a href="login.html" class="active">Authentification</a></li>
+    </ul>
 
+    <div id="nav-session"></div>
+  </nav>
   <main>
     <!-- =====================================================================
          FORMULAIRE — TODO (Dev FS7)
@@ -39,6 +52,7 @@
 
     <!-- LIEN VERS INSCRIPTION — TODO (Dev FS7) : lien "Pas encore de compte ?
          S'inscrire" pointant vers ../inscription/inscription.html -->
+    <p class="register-link">Pas encore de compte ? <a href="../inscription/inscription.html">S'inscrire</a></p>
   </main>
 
   <div id="erreur-globale" hidden></div>

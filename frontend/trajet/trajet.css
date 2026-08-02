@@ -1,0 +1,244 @@
+:root{
+  --navy:#16324f;
+  --navy-active:#33526f;
+  --bg:#f5f8fc;
+  --card:#ffffff;
+  --border:#e3e8ef;
+  --text:#1b2733;
+  --muted:#5c6b7a;
+  --orange:#d97a44;
+  --orange-dark:#c2652f;
+
+  --dispo-bg:#dff3e6;   --dispo-text:#1f8a4c;
+  --limite-bg:#fdecd2;  --limite-text:#b9720b;
+  --complet-bg:#fbdede; --complet-text:#c0392b;
+}
+
+*{ box-sizing:border-box; }
+
+body#page-trajet{
+  margin:0;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+}
+
+/* ---------- Sidebar de navigation ---------- */
+.sidebar{
+  width:270px;
+  flex-shrink:0;
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  padding:24px 0;
+}
+.sidebar-titre{
+  font-size:22px;
+  font-weight:700;
+  padding:0 24px 24px;
+  margin:0;
+}
+.sidebar a{
+  display:block;
+  color:#c9d6e3;
+  text-decoration:none;
+  padding:12px 24px;
+  font-size:15px;
+  border-radius:8px;
+  margin:2px 12px;
+}
+.sidebar a.active{
+  background:var(--navy-active);
+  color:#fff;
+  font-weight:600;
+}
+#nav-session{
+  margin-top:auto;
+  padding:16px 24px 0;
+  font-size:14px;
+  color:#c9d6e3;
+  border-top:1px solid rgba(255,255,255,0.12);
+}
+#nav-session:empty{ border-top:none; padding:0; }
+
+/* ---------- Mise en page principale : grille 2 colonnes ---------- */
+main{
+  flex:1;
+  max-width:900px;
+  margin:0 auto;
+  padding:40px 32px;
+  display:grid;
+  grid-template-columns:1fr 340px;
+  grid-template-areas:
+    "entete   form"
+    "conducteur form"
+    "erreurs  form";
+  gap:24px;
+  align-items:start;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+}
+
+/* ---------- Entête trajet ---------- */
+.entete-trajet{ grid-area:entete; }
+.entete-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+}
+.entete-trajet h1{
+  font-size:20px;
+  margin:0 0 10px;
+}
+.meta{
+  margin:0 0 16px;
+  font-size:14px;
+  color:var(--muted);
+}
+.meta-item + .meta-item::before{
+  content:"·";
+  margin:0 8px;
+  color:var(--border);
+}
+.quote{
+  margin:0;
+  font-style:italic;
+  font-weight:600;
+  font-size:14px;
+  border-left:4px solid var(--navy);
+  background:#f2f6fa;
+  padding:10px 14px;
+  border-radius:0 8px 8px 0;
+}
+
+/* Badge de disponibilité — main.js ajoute une classe parmi
+   badge-dispo / badge-limite / badge-complet en plus de .badge */
+.badge{
+  flex-shrink:0;
+  font-size:13px;
+  font-weight:600;
+  padding:4px 12px;
+  border-radius:20px;
+  background:#eef1f5;
+  color:var(--muted);
+  white-space:nowrap;
+}
+.badge.badge-dispo{   background:var(--dispo-bg);   color:var(--dispo-text); }
+.badge.badge-limite{  background:var(--limite-bg);  color:var(--limite-text); }
+.badge.badge-complet{ background:var(--complet-bg); color:var(--complet-text); }
+
+/* ---------- Fiche conducteur ---------- */
+.fiche-conducteur{ grid-area:conducteur; }
+.fiche-conducteur h2{
+  font-size:16px;
+  margin:0 0 16px;
+}
+.profil{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.avatar{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:linear-gradient(135deg, var(--navy), #2b5b8c);
+  flex-shrink:0;
+}
+.profil-infos p{
+  margin:2px 0;
+  font-size:14px;
+  color:var(--muted);
+}
+.profil-nom{
+  font-weight:700;
+  color:var(--text) !important;
+  font-size:15px;
+}
+
+/* ---------- Formulaire de réservation ---------- */
+#form-reservation{ grid-area:form; }
+#form-reservation h3{
+  margin:0 0 18px;
+  font-size:17px;
+}
+#form-reservation label{
+  display:block;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:6px;
+}
+#form-reservation input{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:18px;
+}
+#btn-reserver{
+  width:100%;
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  padding:12px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+#btn-reserver:hover:not(:disabled){ background:var(--orange-dark); }
+#btn-reserver:disabled{
+  background:#c7ccd3;
+  cursor:not-allowed;
+}
+
+/* ---------- Erreurs (ul/li injectés par main.js) ---------- */
+.erreurs-form{
+  grid-area:erreurs;
+  background:var(--complet-bg);
+  color:var(--complet-text);
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:14px;
+}
+.erreurs-form ul{ margin:0; padding-left:18px; }
+
+.erreur-globale{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  background:var(--complet-text);
+  color:#fff;
+  padding:14px 20px;
+  border-radius:8px;
+  font-size:14px;
+  max-width:320px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  body#page-trajet{ flex-direction:column; }
+  .sidebar{ width:100%; flex-direction:row; flex-wrap:wrap; padding:16px; }
+  .sidebar-titre{ width:100%; padding:0 8px 12px; }
+  #nav-session{ margin-top:0; border-top:none; }
+  main{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "entete"
+      "conducteur"
+      "form"
+      "erreurs";
+    padding:24px 16px;
+  }
+}
