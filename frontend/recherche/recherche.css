@@ -1,0 +1,369 @@
+:root {
+  --bleu-marine: #1e3a5f;
+  --bleu-marine-clair: #2c4c78;
+  --orange: #e8792e;
+  --fond-clair: #f4f7fb;
+  --blanc: #ffffff;
+  --texte: #1f2937;
+  --bordure: #dbe2ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+body#page-recherche {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+
+  font-family: "Segoe UI", sans-serif;
+  background: var(--fond-clair);
+  color: var(--texte);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+
+  width: 260px;
+  min-height: 100vh;
+  flex-shrink: 0;
+
+  background-color: var(--bleu-marine);
+  color: var(--blanc);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 32px 24px;
+}
+
+
+.sidebar-logo {
+
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 32px;
+
+}
+
+
+.sidebar-links {
+
+  list-style: none;
+
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  flex-grow: 1;
+
+}
+
+
+.sidebar-links a {
+
+  display: block;
+
+  padding: 10px 14px;
+
+  border-radius: 8px;
+
+  color: #cdd8e6;
+
+  text-decoration: none;
+
+  font-size: 0.95rem;
+
+}
+
+
+.sidebar-links a:hover,
+.sidebar-links a.active {
+
+  background-color: var(--bleu-marine-clair);
+
+  color: var(--blanc);
+
+}
+
+
+#nav-session {
+
+  border-top: 1px solid rgba(255,255,255,0.2);
+
+  padding-top: 16px;
+
+}
+
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+
+  flex: 1;
+
+  padding: 40px;
+
+}
+
+
+
+/* =========================
+   BARRE FILTRES
+========================= */
+
+.barre-filtres {
+
+  background: var(--blanc);
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  display: flex;
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+
+}
+
+
+
+.barre-filtres select,
+.barre-filtres input {
+
+  flex: 1;
+
+  padding: 12px;
+
+  border: 1px solid var(--bordure);
+
+  border-radius: 8px;
+
+}
+
+
+
+.barre-filtres button {
+
+  padding: 12px 25px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: var(--orange);
+
+  color: white;
+
+  cursor: pointer;
+
+}
+
+
+.barre-filtres button:hover {
+
+  background: #d5691f;
+
+}
+
+
+
+/* =========================
+   CARTES TRAJETS
+========================= */
+
+#liste-trajets {
+
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+
+
+.carte-trajet {
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+}
+
+
+
+.carte-trajet h3 {
+
+  color: var(--bleu-marine);
+
+}
+
+
+
+.heure {
+
+  font-weight: bold;
+
+}
+
+
+
+.prix {
+
+  color: var(--orange);
+
+  font-weight: bold;
+
+}
+
+
+
+/* =========================
+   BADGES
+========================= */
+
+.badge {
+
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 0.85rem;
+
+}
+
+
+
+.badge-dispo {
+
+  background: #dcfce7;
+
+  color: #166534;
+
+}
+
+
+
+.badge-limite {
+
+  background: #fef3c7;
+
+  color: #92400e;
+
+}
+
+
+
+.badge-complet {
+
+  background: #fee2e2;
+
+  color: #991b1b;
+
+}
+
+
+
+/* =========================
+   BOUTON VOIR
+========================= */
+
+.btn-voir {
+
+  display: inline-block;
+
+  margin-top: 15px;
+
+  color: var(--orange);
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+}
+
+
+
+/* =========================
+   AUCUN RESULTAT
+========================= */
+
+.aucun-resultat {
+
+  text-align: center;
+
+  padding: 40px;
+
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+
+  body#page-recherche {
+
+    flex-direction: column;
+
+  }
+
+
+  .sidebar {
+
+    width: 100%;
+
+    min-height: auto;
+
+  }
+
+
+  main {
+
+    padding: 20px;
+
+  }
+
+
+  .barre-filtres {
+
+    flex-direction: column;
+
+  }
+
+
+
+  #liste-trajets {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+}
