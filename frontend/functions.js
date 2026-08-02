@@ -57,26 +57,26 @@ function formaterQuartierPrincipal(compteParQuartier) {
 // ============================================================================
 
 function filtrerParQuartierDepart(trajets, quartier) {
-  /**
-   * Retourne les trajets partant du quartier donné.
-   * @param {Array} trajets - liste d'objets trajet avec "quartier_depart"
-   * @param {string} quartier - nom du quartier
-   * @return {Array} - trajets filtrés
-   * Si quartier est vide ou null, retourne tous les trajets.
-   */
-  // TODO
+    /**
+     * Retourne les trajets partant du quartier donné.
+     * @param {Array} trajets - liste d'objets trajet avec "quartier_depart"
+     * @param {string} quartier - nom du quartier
+     * @return {Array} - trajets filtrés
+     * Si quartier est vide ou null, retourne tous les trajets.
+     */
+    // TODO
 }
 
 function rechercherParMotCle(trajets, motCle) {
-  /**
-   * Recherche les trajets dont le quartier_depart, quartier_arrivee ou
-   * commentaire contient le mot-clé (insensible à la casse).
-   * @param {Array} trajets - liste de trajets
-   * @param {string} motCle - mot recherché
-   * @return {Array} - trajets correspondants
-   * Si motCle est vide, retourne tous les trajets.
-   */
-  // TODO
+    /**
+     * Recherche les trajets dont le quartier_depart, quartier_arrivee ou
+     * commentaire contient le mot-clé (insensible à la casse).
+     * @param {Array} trajets - liste de trajets
+     * @param {string} motCle - mot recherché
+     * @return {Array} - trajets correspondants
+     * Si motCle est vide, retourne tous les trajets.
+     */
+    // TODO
 }
 
 // ============================================================================
@@ -84,22 +84,59 @@ function rechercherParMotCle(trajets, motCle) {
 // ============================================================================
 
 function formaterPrix(prix) {
-  /**
-   * Formate un prix en FCFA avec séparateur de milliers.
-   * @param {number} prix - prix en FCFA (ex: 5000)
-   * @return {string} - "5 000 FCFA"
-   * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
-   */
-  // TODO
+    /**
+     * Formate un prix en FCFA avec séparateur de milliers.
+     * @param {number} prix - prix en FCFA (ex: 5000)
+     * @return {string} - "5 000 FCFA"
+     * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
+     */
+    // TODO
+
+    const nombre = Number(prix);
+
+    if (Number.isNaN(nombre) || nombre < 0) {
+        return "Prix indisponible";
+    }
+
+    // Toujours arrondi à l'entier (pas de centimes en FCFA)
+    const arrondi = Math.round(nombre);
+
+    // Séparateur de milliers "espace fine" à la française
+    const formate = arrondi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+    return `${formate} FCFA`;
 }
 
 function formaterHeure(heure) {
-  /**
-   * Formate une heure au format "HHhMM" à partir d'une heure "HH:MM".
-   * @param {string} heure - format "HH:MM" (ex: "07:30")
-   * @return {string} - "07h30"
-   */
-  // TODO
+    /**
+     * Formate une heure au format "HHhMM" à partir d'une heure "HH:MM".
+     * @param {string} heure - format "HH:MM" (ex: "07:30")
+     * @return {string} - "07h30"
+     */
+    // TODO
+
+    let heures, minutes;
+
+    if (heure instanceof Date) {
+        heures = heure.getHours();
+        minutes = heure.getMinutes();
+    } else if (typeof heure === "string" && heure.includes(":")) {
+        const [h, m] = heure.split(":");
+        heures = parseInt(h, 10);
+        minutes = parseInt(m, 10);
+    } else {
+        return "Heure invalide";
+    }
+
+    if (isNaN(heures) || isNaN(minutes)) {
+        return "Heure invalide";
+    }
+
+    const hh = String(heures).padStart(2, "0");
+    const mm = String(minutes).padStart(2, "0");
+
+    return `${hh}h${mm}`;
+
 }
 
 // ============================================================================
@@ -107,35 +144,72 @@ function formaterHeure(heure) {
 // ============================================================================
 
 function validerFormulaireProposer(formulaire) {
-  /**
-   * Valide le formulaire de proposition de trajet.
-   * @param {Object} formulaire - avec les clés : quartier_depart,
-   *   quartier_arrivee, heure, places_dispo, prix_place
-   * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
-   *
-   * Règles :
-   * - quartier_depart et quartier_arrivee obligatoires et différents
-   * - heure obligatoire au format "HH:MM"
-   * - places_dispo entre 1 et 8
-   * - prix_place > 0
-   */
-  // TODO
+    /**
+     * Valide le formulaire de proposition de trajet.
+     * @param {Object} formulaire - avec les clés : quartier_depart,
+     *   quartier_arrivee, heure, places_dispo, prix_place
+     * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
+     *
+     * Règles :
+     * - quartier_depart et quartier_arrivee obligatoires et différents
+     * - heure obligatoire au format "HH:MM"
+     * - places_dispo entre 1 et 8
+     * - prix_place > 0
+     */
+    // TODO
+
+    // on déclare nos constantes (tableau d'erreurs et regex pour l'heure)
+    const erreurs = [];
+    const heureValide = /^([01]\d|2[0-3]):([0-5]\d)$/.test(formulaire.heure);
+
+    // vérification des quartiers
+    if(!formulaire.quartier_depart || !formulaire.quartier_arrivee){
+        erreurs.push("Les quartiers de départ et d'arrivée sont obligatoires.");
+    }
+    else if(formulaire.quartier_depart === formulaire.quartier_arrivee){
+        erreurs.push("Le quartier de départ doit être différent du quartier d'arrivée.");
+    }
+
+    // Vérification du format de l'heure (on va utiliser l'expression régulière)
+    if (!formulaire.heure || !heureValide) {
+        erreurs.push("L'heure est obligatoire et doit être au format \"HH:MM\"."); //échapée avec back-slash pour que les griffes soient affichées.
+    }
+
+    // on convertit d'abord en number avant de vérifier, car un input HTML (même type number) return tjrs un string
+    const places = Number(formulaire.places_dispo);
+    
+    // ensuite on peut vérifier le nombre de places disponibles !
+    if( (Number.isNaN(places) ) || places < 1 || places > 8) {
+        erreurs.push("Le nombre de places doit être compris entre 1 et 8.");
+    }
+
+    // d'abord on convertit le prix d'une place en number.
+    const prix = Number(formulaire.prix_place);
+
+    // ensuite on vérifie le prix par place !
+    if (Number.isNaN(prix) || prix <= 0) {
+        erreurs.push("Le prix par place doit être supérieur à 0.");
+    }
+
+    // on return enfin le résultat de la validation (une liste d'erreurs et un booléen indiquant si le formulaire est valide ou non)
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
 }
 
-function formaterMessageConfirmation(
-  nom,
-  quartierDepart,
-  quartierArrivee,
-  heure,
-) {
-  /**
-   * Génère le message de confirmation après réservation.
-   * @return {string} - message formaté
-   * Exemple :
-   *   formaterMessageConfirmation("Marie", "Bacongo", "Poto-Poto", "07:30")
-   *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
-   */
-  // TODO
+function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure) {
+    /**
+     * Génère le message de confirmation après réservation.
+     * @return {string} - message formaté
+     * Exemple :
+     *   formaterMessageConfirmation("Marie", "Bacongo", "Poto-Poto", "07:30")
+     *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
+     */
+    // TODO
+
+    // on utilise les literaux de gabarits (backticks + ${}) pour formater le message de confirmation !
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================
@@ -143,26 +217,41 @@ function formaterMessageConfirmation(
 // ============================================================================
 
 function filtrerReservationsParStatut(reservations, statut) {
-  /**
-   * Filtre les réservations par statut.
-   * @param {Array} reservations - liste de réservations
-   * @param {string} statut - "effectue", "en_attente", "annule" ou "" pour toutes
-   * @return {Array} - réservations correspondantes
-   */
-  // TODO
+    /**
+     * Filtre les réservations par statut.
+     * @param {Array} reservations - liste de réservations
+     * @param {string} statut - "effectue", "en_attente", "annule" ou "" pour toutes
+     * @return {Array} - réservations correspondantes
+     */
+    // TODO
+    // Si aucun filtre n'est choisi, on retourne toutes les réservations
+    if (!statut) {
+        return reservations;
+    }
+
+    return reservations.filter((reservation) => reservation.statut === statut);
 }
 
 function calculerTotalDepenseParPassager(reservations) {
-  /**
-   * Calcule le total dépensé par un passager sur ses réservations non annulées.
-   * @param {Array} reservations - chaque réservation a une clé "trajet"
-   *   qui contient {prix_place: number} et une clé "statut"
-   * @return {number} - somme des prix_place des réservations non "annule"
-   * Exemple :
-   *   3 réservations : 500 (effectue), 700 (en_attente), 400 (annule)
-   *   → 1200
-   */
-  // TODO
+    /**
+     * Calcule le total dépensé par un passager sur ses réservations non annulées.
+     * @param {Array} reservations - chaque réservation a une clé "trajet"
+     *   qui contient {prix_place: number} et une clé "statut"
+     * @return {number} - somme des prix_place des réservations non "annule"
+     * Exemple :
+     *   3 réservations : 500 (effectue), 700 (en_attente), 400 (annule)
+     *   → 1200
+     */
+    // TODO
+    let total = 0;
+
+    for (let reservation of reservations) {
+        if (reservation.statut !== "annule") {
+        total = total + reservation.trajet.prix_place;
+        }
+    }
+
+    return total;
 }
 
 // ============================================================================
@@ -170,29 +259,29 @@ function calculerTotalDepenseParPassager(reservations) {
 // ============================================================================
 
 function calculerPourcentageOccupation(placesOccupees, placesTotales) {
-  /**
-   * Calcule le pourcentage d'occupation d'un trajet.
-   * @param {number} placesOccupees - places réservées
-   * @param {number} placesTotales - places totales du trajet
-   * @return {number} - pourcentage arrondi (0 à 100)
-   * Exemple : 2 places sur 4 → 50
-   * Si placesTotales est 0, retourne 0.
-   */
-  // TODO
+    /**
+     * Calcule le pourcentage d'occupation d'un trajet.
+     * @param {number} placesOccupees - places réservées
+     * @param {number} placesTotales - places totales du trajet
+     * @return {number} - pourcentage arrondi (0 à 100)
+     * Exemple : 2 places sur 4 → 50
+     * Si placesTotales est 0, retourne 0.
+     */
+    // TODO
 }
 
 function getBadgeDisponibilite(placesRestantes) {
-  /**
-   * Retourne le libellé et la classe CSS d'un badge de disponibilité.
-   * @param {number} placesRestantes - nombre de places restantes
-   * @return {Object} - {libelle: string, classe: string}
-   *
-   * Règles :
-   * - 0 place  → {libelle: "Complet", classe: "badge-complet"}
-   * - 1 place  → {libelle: "1 place", classe: "badge-limite"}
-   * - 2+ places → {libelle: "N places", classe: "badge-dispo"}  (N = placesRestantes)
-   */
-  // TODO
+    /**
+     * Retourne le libellé et la classe CSS d'un badge de disponibilité.
+     * @param {number} placesRestantes - nombre de places restantes
+     * @return {Object} - {libelle: string, classe: string}
+     *
+     * Règles :
+     * - 0 place  → {libelle: "Complet", classe: "badge-complet"}
+     * - 1 place  → {libelle: "1 place", classe: "badge-limite"}
+     * - 2+ places → {libelle: "N places", classe: "badge-dispo"}  (N = placesRestantes)
+     */
+    // TODO
 }
 
 // ============================================================================
@@ -200,50 +289,88 @@ function getBadgeDisponibilite(placesRestantes) {
 // ============================================================================
 
 function validerFormulaireInscription(formulaire) {
-  /**
-   * Valide le formulaire d'inscription.
-   * @param {Object} formulaire - avec les clés : nom, telephone, mot_de_passe
-   * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
-   *
-   * Règles :
-   * - nom obligatoire (non vide après trim)
-   * - telephone obligatoire, au moins 9 chiffres
-   * - mot_de_passe obligatoire, au moins 4 caractères
-   */
-  // TODO
+    /**
+     * Valide le formulaire d'inscription.
+     * @param {Object} formulaire - avec les clés : nom, telephone, mot_de_passe
+     * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
+     *
+     * Règles :
+     * - nom obligatoire (non vide après trim)
+     * - telephone obligatoire, au moins 9 chiffres
+     * - mot_de_passe obligatoire, au moins 4 caractères
+     */
+    // TODO
+    let erreurs = [];
+
+  if (formulaire.nom.trim() === "") {
+    erreurs.push("Le nom est obligatoire.");
+  }
+
+  if (formulaire.telephone.trim() === "") {
+    erreurs.push("Le téléphone est obligatoire.");
+  } else if (formulaire.telephone.length < 9) {
+    erreurs.push("Le téléphone doit contenir au moins 9 chiffres.");
+  }
+
+  if (formulaire.mot_de_passe.trim() === "") {
+    erreurs.push("Le mot de passe est obligatoire.");
+  } else if (formulaire.mot_de_passe.length < 4) {
+    erreurs.push("Le mot de passe doit contenir au moins 4 caractères.");
+  }
+
+  if (erreurs.length === 0) {
+    return {
+      valide: true,
+      erreurs: [],
+    };
+  }
+
+  return {
+    valide: false,
+    erreurs: erreurs,
+  };
 }
 
 function validerFormulaireLogin(formulaire) {
-  /**
-   * Valide le formulaire de connexion.
-   * @param {Object} formulaire - avec les clés : telephone, mot_de_passe
-   * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
-   *
-   * Règles :
-   * - telephone obligatoire
-   * - mot_de_passe obligatoire
-   */
-  // TODO
+    /**
+     * Valide le formulaire de connexion.
+     * @param {Object} formulaire - avec les clés : telephone, mot_de_passe
+     * @return {Object} - {valide: true/false, erreurs: [liste de messages]}
+     *
+     * Règles :
+     * - telephone obligatoire
+     * - mot_de_passe obligatoire
+     */
+    // TODO
+    const erreurs = [];
+
+    // Vérification du téléphone
+    if (!formulaire.telephone || formulaire.telephone.trim() === "") {
+        erreurs.push("Le numéro de téléphone est obligatoire.");
+    }
+
+    // Vérification du mot de passe
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+        erreurs.push("Le mot de passe est obligatoire.");
+    }
+
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
 }
 
 // ============================================================================
 // NE PAS MODIFIER : export pour les tests
 // ============================================================================
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    compterTrajetsAujourdhui,
-    formaterQuartierPrincipal,
-    filtrerParQuartierDepart,
-    rechercherParMotCle,
-    formaterPrix,
-    formaterHeure,
-    validerFormulaireProposer,
-    formaterMessageConfirmation,
-    filtrerReservationsParStatut,
-    calculerTotalDepenseParPassager,
-    calculerPourcentageOccupation,
-    getBadgeDisponibilite,
-    validerFormulaireInscription,
-    validerFormulaireLogin,
-  };
+    module.exports = {
+        compterTrajetsAujourdhui, formaterQuartierPrincipal,
+        filtrerParQuartierDepart, rechercherParMotCle,
+        formaterPrix, formaterHeure,
+        validerFormulaireProposer, formaterMessageConfirmation,
+        filtrerReservationsParStatut, calculerTotalDepenseParPassager,
+        calculerPourcentageOccupation, getBadgeDisponibilite,
+        validerFormulaireInscription, validerFormulaireLogin,
+    };
 }
