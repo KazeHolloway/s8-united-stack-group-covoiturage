@@ -78,21 +78,20 @@ function formaterPrix(prix) {
      * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
      */
     // TODO
-    function formaterPrix(prix) {
-  const nombre = Number(prix);
 
-  if (isNaN(nombre) || nombre < 0) {
-    return "Prix indisponible";
-  }
+    const nombre = Number(prix);
 
-  // Toujours arrondi à l'entier (pas de centimes en FCFA)
-  const arrondi = Math.round(nombre);
+    if (Number.isNaN(nombre) || nombre < 0) {
+        return "Prix indisponible";
+    }
 
-  // Séparateur de milliers "espace fine" à la française
-  const formate = arrondi.toLocaleString("fr-FR");
+    // Toujours arrondi à l'entier (pas de centimes en FCFA)
+    const arrondi = Math.round(nombre);
 
-  return `${formate} FCFA`;
-}
+    // Séparateur de milliers "espace fine" à la française
+    const formate = arrondi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+    return `${formate} FCFA`;
 }
 
 function formaterHeure(heure) {
@@ -102,29 +101,29 @@ function formaterHeure(heure) {
      * @return {string} - "07h30"
      */
     // TODO
-    function formaterHeure(heure) {
-  let heures, minutes;
 
-  if (heure instanceof Date) {
-    heures = heure.getHours();
-    minutes = heure.getMinutes();
-  } else if (typeof heure === "string" && heure.includes(":")) {
-    const [h, m] = heure.split(":");
-    heures = parseInt(h, 10);
-    minutes = parseInt(m, 10);
-  } else {
-    return "Heure invalide";
-  }
+    let heures, minutes;
 
-  if (isNaN(heures) || isNaN(minutes)) {
-    return "Heure invalide";
-  }
-
-  const hh = String(heures).padStart(2, "0");
-  const mm = String(minutes).padStart(2, "0");
-
-  return `${hh}h${mm}`;
+    if (heure instanceof Date) {
+        heures = heure.getHours();
+        minutes = heure.getMinutes();
+    } else if (typeof heure === "string" && heure.includes(":")) {
+        const [h, m] = heure.split(":");
+        heures = parseInt(h, 10);
+        minutes = parseInt(m, 10);
+    } else {
+        return "Heure invalide";
     }
+
+    if (isNaN(heures) || isNaN(minutes)) {
+        return "Heure invalide";
+    }
+
+    const hh = String(heures).padStart(2, "0");
+    const mm = String(minutes).padStart(2, "0");
+
+    return `${hh}h${mm}`;
+
 }
 
 // ============================================================================
