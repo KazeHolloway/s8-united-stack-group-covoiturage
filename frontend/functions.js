@@ -19,24 +19,37 @@
 // ============================================================================
 
 function compterTrajetsAujourdhui(trajets, dateAujourdhui) {
-    /**
-     * Compte le nombre de trajets prévus pour la date donnée.
-     * @param {Array} trajets - liste d'objets avec une clé "date" (ex: "2026-07-27")
-     * @param {string} dateAujourdhui - date au format "AAAA-MM-JJ"
-     * @return {number} - nombre de trajets à cette date
-     * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
-     */
-    // TODO
+  /**
+   * Compte le nombre de trajets prévus pour la date donnée.
+   * @param {Array} trajets - liste d'objets avec une clé "date" (ex: "2026-07-27")
+   * @param {string} dateAujourdhui - date au format "AAAA-MM-JJ"
+   * @return {number} - nombre de trajets à cette date
+   * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
+   */
+  return trajets.filter((trajet) => trajet.date === dateAujourdhui).length;
 }
 
 function formaterQuartierPrincipal(compteParQuartier) {
-    /**
-     * Retourne le nom du quartier qui a le plus de trajets, sous forme lisible.
-     * @param {Object} compteParQuartier - ex: {"Bacongo": 5, "Moungali": 3, "Poto-Poto": 8}
-     * @return {string} - ex: "Poto-Poto (8 trajets)"
-     * Si l'objet est vide, retourne "Aucun trajet".
-     */
-    // TODO
+  /**
+   * Retourne le nom du quartier qui a le plus de trajets, sous forme lisible.
+   * @param {Object} compteParQuartier - ex: {"Bacongo": 5, "Moungali": 3, "Poto-Poto": 8}
+   * @return {string} - ex: "Poto-Poto (8 trajets)"
+   * Si l'objet est vide, retourne "Aucun trajet".
+   */
+  if (Object.keys(compteParQuartier).length === 0) {
+    return "Aucun trajet";
+  }
+
+  let meilleurQuartier = null;
+  let meilleurCompte = -1;
+
+  for (const [quartier, compte] of Object.entries(compteParQuartier)) {
+    if (compte > meilleurCompte) {
+        meilleurCompte = compte;
+        meilleurQuartier = quartier;
+    }
+  }
+  return `${meilleurQuartier} (${meilleurCompte} trajets)`;
 }
 
 // ============================================================================
