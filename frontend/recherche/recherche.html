@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BraCovoit — Recherche</title>
   <link rel="stylesheet" href="recherche.css">
+
+  <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body id="page-recherche">
 
@@ -22,12 +37,472 @@
 
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <section class="barre-filtres">
+    <!-- <section class="barre-filtres">  
       <select id="filtre-depart"></select>
       <input type="text" id="champ-recherche" placeholder="Rechercher un quartier, un mot-clé...">
       <button id="btn-rechercher">Rechercher</button>
+    </section> -->
+
+    <section class="search-card">
+
+            <div class="search-grid">
+
+                <!-- Départ -->
+
+                <div class="field">
+
+                    <label>
+
+                        Départ
+
+                    </label>
+
+                    <div class="field-input">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <!-- NE PAS MODIFIER -->
+                        <select id="filtre-depart">
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Arrivée -->
+
+                <div class="field">
+
+                    <label>
+
+                        Arrivée
+
+                    </label>
+
+                    <div class="field-input">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <!-- NE PAS MODIFIER -->
+                        <select id="filtre-depart">
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Date -->
+
+                <div class="field">
+
+                    <label>
+
+                        Date
+
+                    </label>
+
+                    <div class="field-input">
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        <input
+
+                            type="date"
+
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- Heure -->
+
+                <div class="field">
+
+                    <label>
+
+                        Heure
+
+                    </label>
+
+                    <div class="field-input">
+
+                        <i class="fa-regular fa-clock"></i>
+
+                        <input
+
+                            type="time"
+
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="search-divider"></div>
+
+            <!-- ================================================ -->
+            <!-- ACTIONS -->
+            <!-- ================================================ -->
+
+            <div class="search-footer">
+
+                <div class="left-actions">
+
+                    <button
+
+                        class="btn-reset"
+
+                        type="reset">
+
+                        <i class="fa-solid fa-rotate-left"></i>
+
+                        Réinitialiser
+
+                    </button>
+
+                    <!-- NE PAS MODIFIER -->
+
+                    <button
+
+                        id="btn-rechercher"
+
+                        class="btn-primary"
+
+                        type="button">
+
+                        Filtrer les résultats
+
+                    </button>
+
+                </div>
+
+                <div class="right-actions">
+
+                    <button class="sort active">
+
+                        <i class="fa-solid fa-arrow-trend-down"></i>
+
+                        Prix croissant
+
+                    </button>
+
+                    <button class="sort">
+
+                        <i class="fa-solid fa-arrow-trend-up"></i>
+
+                        Prix décroissant
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </section>
 
+    <section class="content">
+      <!-- ===================================================== -->
+<!-- LEFT SIDEBAR -->
+<!-- ===================================================== -->
+
+<aside class="left-sidebar">
+
+    <!-- Carte -->
+
+    <div class="map-card">
+
+        <img
+            src="assets/images/map.jpg"
+            alt="Carte du trajet">
+
+        <div class="map-overlay">
+
+            <small>
+
+                Aperçu du trajet
+
+            </small>
+
+            <h3>
+
+                Libreville → Lambaréné
+
+            </h3>
+
+        </div>
+
+    </div>
+
+    <!-- Carte Eco -->
+
+    <div class="eco-card">
+
+        <div class="eco-icon">
+
+            <i class="fa-solid fa-leaf"></i>
+
+        </div>
+
+        <div>
+
+            <h4>
+
+                Eco-friendly
+
+            </h4>
+
+            <p>
+
+                Réduisez votre empreinte carbone
+                en partageant votre trajet
+                aujourd'hui.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</aside>
+
+<!-- ===================================================== -->
+<!-- RESULTATS -->
+<!-- ===================================================== -->
+
+<section class="results-column">
+
+    <!-- ================================================= -->
+    <!-- IMPORTANT -->
+    <!-- Les cartes sont générées automatiquement
+    par main.js.
+    NE PAS AJOUTER de .carte-trajet ici.
+    ================================================= -->
+
+    <section id="liste-trajets">
+
+    </section>
+
+    <!-- ================================================ -->
+    <!-- Aucun résultat -->
+    <!-- main.js remplacera automatiquement
+    le contenu lorsque nécessaire.
+    ================================================ -->
+
+    <!--
+    <div class="aucun-resultat">
+
+        <i class="fa-solid fa-car-side"></i>
+
+        <h3>
+
+            Aucun trajet trouvé
+
+        </h3>
+
+        <p>
+
+            Essayez de modifier vos filtres.
+
+        </p>
+
+    </div>
+    -->
+
+    <!-- ================================================ -->
+    <!-- Charger plus -->
+    <!-- ================================================ -->
+
+    <div class="load-more">
+
+        <button
+            class="btn-load-more"
+            type="button">
+
+            <span>
+
+                Afficher plus de trajets
+
+            </span>
+
+            <i class="fa-solid fa-chevron-down"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- <aside class="right-sidebar">
+
+    <a
+        href="#"
+        class="back-link">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Retour aux résultats
+
+    </a>
+
+    
+
+    <div class="side-card">
+
+        <h2>
+
+            Lundi 14 Octobre
+
+        </h2>
+
+        <div class="trip-timeline">
+
+            <div class="timeline-stop">
+
+                <span class="timeline-circle"></span>
+
+                <div>
+
+                    <strong>
+
+                        08:30
+
+                    </strong>
+
+                    <p>
+
+                        Paris, Gare de Lyon
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="timeline-bar"></div>
+
+            <div class="timeline-stop">
+
+                <span class="timeline-circle filled"></span>
+
+                <div>
+
+                    <strong>
+
+                        11:45
+
+                    </strong>
+
+                    <p>
+
+                        Lyon, Part-Dieu
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+    <div class="side-card driver-card">
+
+        <img
+
+            src="assets/avatars/avatar1.jpg"
+
+            alt="Conducteur">
+
+        <div>
+
+            <h3>
+
+                Jean-Marc D.
+
+            </h3>
+
+            <p>
+
+                ⭐ 4.8 / 5 (124 avis)
+
+            </p>
+
+            <span class="verified">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Conducteur vérifié
+
+            </span>
+
+        </div>
+
+    </div>
+
+  
+
+    <div class="side-card">
+
+        <small>
+
+            VÉHICULE
+
+        </small>
+
+        <div class="vehicle">
+
+            <i class="fa-solid fa-car-side"></i>
+
+            <div>
+
+                <h4>
+
+                    Tesla Model 3
+
+                </h4>
+
+                <p>
+
+                    Blanc • Électrique
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</aside> -->
+
+       
+        </section>
+
+   
+
+    <!-- ===================================================== -->
+    <!-- LOADER -->
+    <!-- ===================================================== -->
+
+    <div
+        id="loader"
+        class="loader hidden"
+        aria-hidden="true">
+
+        <div class="spinner"></div>
+
+    </div>
+    </section>
     <!-- =====================================================================
          RÉSULTATS — TODO (Dev FS2)
          main.js remplit ce conteneur avec des cartes .carte-trajet, chacune

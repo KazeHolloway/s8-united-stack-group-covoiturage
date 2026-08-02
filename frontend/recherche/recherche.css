@@ -1,0 +1,1886 @@
+/* ==========================================================================
+   BraCovoit
+   Recherche.css
+   ========================================================================== */
+
+
+/* ==========================================================================
+   VARIABLES
+   ========================================================================== */
+
+:root{
+
+    --primary:#2563EB;
+    --primary-dark:#1D4ED8;
+    --primary-light:#EFF6FF;
+
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
+
+    --text:#111827;
+    --text-light:#6B7280;
+
+    --background:#F5F7FB;
+
+    --white:#FFFFFF;
+
+    --border:#E5E7EB;
+
+    --shadow-sm:0 2px 8px rgba(0,0,0,.05);
+    --shadow-md:0 8px 24px rgba(0,0,0,.08);
+    --shadow-lg:0 18px 45px rgba(0,0,0,.10);
+
+    --radius-sm:10px;
+    --radius-md:18px;
+    --radius-lg:24px;
+
+    --transition:.25s ease;
+
+}
+
+
+/* ==========================================================================
+   RESET
+   ========================================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background);
+
+    color:var(--text);
+
+    line-height:1.5;
+
+    -webkit-font-smoothing:antialiased;
+
+}
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+input,
+select{
+
+    border:none;
+
+    outline:none;
+
+    background:none;
+
+    font-family:inherit;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+/* ==========================================================================
+   SCROLLBAR
+   ========================================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ECECEC;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#B8B8B8;
+
+    border-radius:20px;
+
+}
+
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.header{
+
+    height:78px;
+
+    background:var(--white);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 28px;
+
+    border-bottom:1px solid var(--border);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.header h1{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.circle-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:#F3F4F6;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transition:var(--transition);
+
+}
+
+.circle-btn:hover{
+
+    background:#E5E7EB;
+
+}
+
+.circle-btn i{
+
+    font-size:18px;
+
+}
+
+
+/* ==========================================================================
+   SESSION
+   ========================================================================== */
+
+#nav-session{
+
+    width:min(1450px,95%);
+
+    margin:24px auto 0;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:12px;
+
+    font-size:14px;
+
+}
+
+#nav-session a{
+
+    color:var(--primary);
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================================
+   PAGE
+   ========================================================================== */
+
+.page{
+
+    width:min(1450px,95%);
+
+    margin:30px auto;
+
+}
+
+
+/* ==========================================================================
+   SEARCH CARD
+   ========================================================================== */
+
+.search-card{
+
+    background:var(--white);
+
+    border-radius:var(--radius-lg);
+
+    box-shadow:var(--shadow-sm);
+
+    padding:28px;
+
+    margin-bottom:30px;
+
+}
+
+
+/* ==========================================================================
+   SEARCH GRID
+   ========================================================================== */
+
+.search-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+.field{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.field label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+
+/* ==========================================================================
+   INPUT
+   ========================================================================== */
+
+.field-input{
+
+    height:58px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    background:#F9FAFB;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:0 18px;
+
+    transition:var(--transition);
+
+}
+
+.field-input:hover{
+
+    border-color:var(--primary);
+
+}
+
+.field-input:focus-within{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.field-input i{
+
+    color:var(--primary);
+
+}
+
+.field-input input{
+
+    flex:1;
+
+    font-size:15px;
+
+}
+
+.field-input select{
+
+    flex:1;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    background:transparent;
+
+}
+
+
+/* ==========================================================================
+   DIVIDER
+   ========================================================================== */
+
+.search-divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:24px 0;
+
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.search-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.left-actions{
+
+    display:flex;
+
+    gap:14px;
+
+}
+
+.right-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn-primary{
+
+    background:var(--primary);
+
+    color:white;
+
+    border-radius:12px;
+
+    padding:14px 26px;
+
+    font-weight:600;
+
+    transition:var(--transition);
+
+}
+
+.btn-primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.btn-reset{
+
+    background:#F3F4F6;
+
+    color:#374151;
+
+    border-radius:12px;
+
+    padding:14px 22px;
+
+    transition:var(--transition);
+
+}
+
+.btn-reset:hover{
+
+    background:#E5E7EB;
+
+}
+
+.sort{
+
+    background:#F3F4F6;
+
+    border-radius:12px;
+
+    padding:12px 18px;
+
+    font-size:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:var(--transition);
+
+}
+
+.sort.active{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/* ==========================================================================
+   CONTENT LAYOUT
+========================================================================== */
+
+.content{
+
+    display:grid;
+
+    grid-template-columns:280px 1fr 320px;
+
+    gap:30px;
+
+    align-items:start;
+
+}
+
+/* ==========================================================================
+   LEFT SIDEBAR
+========================================================================== */
+
+.left-sidebar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+/* ==========================================================================
+   MAP CARD
+========================================================================== */
+
+.map-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    background:#FFF;
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.map-card img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+.map-overlay{
+
+    position:absolute;
+
+    inset:auto 0 0 0;
+
+    padding:22px;
+
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.75)
+    );
+
+    color:#FFF;
+
+}
+
+.map-overlay small{
+
+    display:block;
+
+    opacity:.85;
+
+    margin-bottom:6px;
+
+}
+
+.map-overlay h3{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================================
+   ECO CARD
+========================================================================== */
+
+.eco-card{
+
+    background:#FFF;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    display:flex;
+
+    gap:18px;
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+.eco-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    background:#ECFDF3;
+
+    color:#22C55E;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:26px;
+
+    flex-shrink:0;
+
+}
+
+.eco-card h4{
+
+    font-size:18px;
+
+    margin-bottom:8px;
+
+}
+
+.eco-card p{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================================================================
+   RESULTS COLUMN
+========================================================================== */
+
+.results-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+/* ==========================================================================
+   LISTE DES TRAJETS
+========================================================================== */
+
+#liste-trajets{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+/* ==========================================================================
+   CARTE TRAJET
+   (créée automatiquement par main.js)
+========================================================================== */
+
+.carte-trajet{
+
+    background:#FFF;
+
+    border-radius:22px;
+
+    padding:26px;
+
+    box-shadow:var(--shadow-sm);
+
+    border:1px solid var(--border);
+
+    transition:.25s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.carte-trajet:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* ==========================================================================
+   TITRE
+========================================================================== */
+
+.carte-trajet h3{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    line-height:1.3;
+
+}
+
+/* ==========================================================================
+   HEURE
+========================================================================== */
+
+.heure{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+    font-size:16px;
+
+}
+
+.heure::before{
+
+    content:"🕒";
+
+}
+
+/* ==========================================================================
+   CONDUCTEUR
+========================================================================== */
+
+.conducteur{
+
+    color:#4B5563;
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.conducteur::before{
+
+    content:"👤 ";
+
+}
+
+/* ==========================================================================
+   PRIX
+========================================================================== */
+
+.prix{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+/* ==========================================================================
+   BADGES
+========================================================================== */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:max-content;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.badge-dispo{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+}
+
+.badge-limite{
+
+    background:#FEF3C7;
+
+    color:#B45309;
+
+}
+
+.badge-complet{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+}
+
+/* ==========================================================================
+   BOUTON
+========================================================================== */
+
+.btn-voir{
+
+    align-self:flex-start;
+
+    margin-top:8px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    background:var(--primary);
+
+    color:#FFF;
+
+    border-radius:14px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-voir::after{
+
+    content:"→";
+
+    font-size:18px;
+
+}
+
+.btn-voir:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================================================
+   AUCUN RESULTAT
+========================================================================== */
+
+.aucun-resultat{
+
+    background:#FFF;
+
+    border-radius:22px;
+
+    padding:60px 30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow-sm);
+
+    color:var(--text-light);
+
+    font-size:18px;
+
+}
+
+.aucun-resultat i{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================================
+   LOAD MORE
+========================================================================== */
+
+.load-more{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:12px;
+
+}
+
+.btn-load-more{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:16px 28px;
+
+    border-radius:16px;
+
+    background:#FFF;
+
+    border:1px solid var(--border);
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.btn-load-more:hover{
+
+    background:var(--primary);
+
+    color:#FFF;
+
+}
+
+/* ==========================================================================
+   RIGHT SIDEBAR
+========================================================================== */
+
+.right-sidebar{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    position:sticky;
+
+    top:110px;
+
+}
+
+/* ==========================================================================
+   BACK LINK
+========================================================================== */
+
+.back-link{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    font-size:15px;
+
+    transition:var(--transition);
+
+}
+
+.back-link:hover{
+
+    gap:16px;
+
+}
+
+.back-link i{
+
+    font-size:14px;
+
+}
+
+/* ==========================================================================
+   SIDE CARD
+========================================================================== */
+
+.side-card{
+
+    background:#FFF;
+
+    border-radius:22px;
+
+    padding:24px;
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:var(--transition);
+
+}
+
+.side-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.side-card small{
+
+    color:#9CA3AF;
+
+    font-size:12px;
+
+    letter-spacing:.15em;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================================
+   TIMELINE
+========================================================================== */
+
+.side-card h2{
+
+    margin-bottom:24px;
+
+    font-size:22px;
+
+}
+
+.trip-timeline{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.timeline-stop{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+}
+
+.timeline-circle{
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#FFF;
+
+    border:4px solid var(--primary);
+
+    flex-shrink:0;
+
+    margin-top:4px;
+
+}
+
+.timeline-circle.filled{
+
+    background:var(--primary);
+
+}
+
+.timeline-bar{
+
+    width:2px;
+
+    height:56px;
+
+    background:#D1D5DB;
+
+    margin:8px 0 8px 8px;
+
+}
+
+.timeline-stop strong{
+
+    display:block;
+
+    font-size:17px;
+
+    margin-bottom:4px;
+
+}
+
+.timeline-stop p{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/* ==========================================================================
+   DRIVER CARD
+========================================================================== */
+
+.driver-card{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.driver-card img{
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:4px solid #EFF6FF;
+
+}
+
+.driver-card h3{
+
+    font-size:20px;
+
+    margin-bottom:6px;
+
+}
+
+.driver-card p{
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+}
+
+.verified{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#ECFDF3;
+
+    color:#15803D;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================================
+   VEHICLE
+========================================================================== */
+
+.vehicle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-top:16px;
+
+}
+
+.vehicle i{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:18px;
+
+    background:#EFF6FF;
+
+    color:var(--primary);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+.vehicle h4{
+
+    font-size:18px;
+
+    margin-bottom:4px;
+
+}
+
+.vehicle p{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/* ==========================================================================
+   LOADER
+========================================================================== */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(4px);
+
+    z-index:9999;
+
+}
+
+.loader.hidden{
+
+    display:none;
+
+}
+
+.spinner{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    border:5px solid #E5E7EB;
+
+    border-top-color:var(--primary);
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================================================
+   GLOBAL ERROR
+========================================================================== */
+
+.error-box{
+
+    position:fixed;
+
+    right:24px;
+
+    bottom:24px;
+
+    max-width:360px;
+
+    background:#FEE2E2;
+
+    color:#991B1B;
+
+    padding:18px 22px;
+
+    border-radius:16px;
+
+    border-left:5px solid #DC2626;
+
+    box-shadow:var(--shadow-md);
+
+    z-index:10000;
+
+}
+
+/* ==========================================================================
+   MICRO ANIMATIONS
+========================================================================== */
+
+.search-card,
+.map-card,
+.eco-card,
+.side-card,
+.carte-trajet{
+
+    animation:fadeIn .45s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================================================
+   HOVER EFFECTS
+========================================================================== */
+
+button,
+.btn-voir,
+.badge{
+
+    transition:all .25s ease;
+
+}
+
+.btn-primary:hover,
+.btn-reset:hover,
+.btn-load-more:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.btn-primary:active,
+.btn-reset:active,
+.btn-load-more:active{
+
+    transform:scale(.98);
+
+}
+
+/* ==========================================================================
+   SELECTION
+========================================================================== */
+
+::selection{
+
+    background:var(--primary);
+
+    color:#FFF;
+
+}
+
+/* ==========================================================================
+   FOCUS
+========================================================================== */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible{
+
+    outline:3px solid rgba(37,99,235,.25);
+
+    outline-offset:3px;
+
+}
+
+/* ==========================================================================
+   RESPONSIVE
+========================================================================== */
+
+/* ==========================================================
+   DESKTOP LARGE
+========================================================== */
+
+@media screen and (max-width:1400px){
+
+    .content{
+
+        grid-template-columns:240px 1fr 280px;
+
+        gap:24px;
+
+    }
+
+}
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media screen and (max-width:1200px){
+
+    .content{
+
+        grid-template-columns:220px 1fr;
+
+    }
+
+    .right-sidebar{
+
+        display:none;
+
+    }
+
+    .search-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .search-footer{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLETTE
+========================================================== */
+
+@media screen and (max-width:992px){
+
+    .content{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .left-sidebar{
+
+        position:relative;
+
+        top:auto;
+
+        flex-direction:row;
+
+        align-items:stretch;
+
+    }
+
+    .map-card,
+    .eco-card{
+
+        flex:1;
+
+    }
+
+    .search-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .search-footer{
+
+        flex-direction:column;
+
+        gap:18px;
+
+    }
+
+    .left-actions,
+    .right-actions{
+
+        width:100%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media screen and (max-width:768px){
+
+    body{
+
+        font-size:15px;
+
+    }
+
+    .header{
+
+        height:70px;
+
+        padding:0 18px;
+
+    }
+
+    .header h1{
+
+        font-size:18px;
+
+    }
+
+    .circle-btn{
+
+        width:42px;
+
+        height:42px;
+
+    }
+
+    .search-card{
+
+        padding:20px;
+
+    }
+
+    .field-input{
+
+        height:52px;
+
+    }
+
+    .btn-primary,
+    .btn-reset{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .left-actions{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .right-actions{
+
+        width:100%;
+
+    }
+
+    .sort{
+
+        flex:1;
+
+        justify-content:center;
+
+    }
+
+    .left-sidebar{
+
+        flex-direction:column;
+
+    }
+
+    .map-card img{
+
+        height:220px;
+
+    }
+
+    .carte-trajet{
+
+        padding:20px;
+
+    }
+
+    .carte-trajet h3{
+
+        font-size:20px;
+
+    }
+
+    .prix{
+
+        font-size:24px;
+
+    }
+
+    .btn-voir{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ==========================================================
+   PETITS SMARTPHONES
+========================================================== */
+
+@media screen and (max-width:576px){
+
+    .page{
+
+        width:94%;
+
+        margin:20px auto;
+
+    }
+
+    .header{
+
+        padding:0 14px;
+
+    }
+
+    .header h1{
+
+        font-size:16px;
+
+    }
+
+    .search-card{
+
+        padding:18px;
+
+    }
+
+    .map-overlay{
+
+        padding:18px;
+
+    }
+
+    .map-overlay h3{
+
+        font-size:18px;
+
+    }
+
+    .eco-card{
+
+        padding:18px;
+
+    }
+
+    .eco-icon{
+
+        width:52px;
+
+        height:52px;
+
+        font-size:22px;
+
+    }
+
+    .carte-trajet{
+
+        border-radius:18px;
+
+    }
+
+    .badge{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+}
+
+/* ==========================================================
+   iPHONE SE
+========================================================== */
+
+@media screen and (max-width:390px){
+
+    .header{
+
+        height:64px;
+
+    }
+
+    .header h1{
+
+        font-size:15px;
+
+    }
+
+    .field-input{
+
+        padding:0 14px;
+
+    }
+
+    .field label{
+
+        font-size:13px;
+
+    }
+
+    .btn-primary,
+    .btn-reset,
+    .btn-load-more{
+
+        padding:13px 18px;
+
+    }
+
+    .carte-trajet h3{
+
+        font-size:18px;
+
+    }
+
+    .prix{
+
+        font-size:20px;
+
+    }
+
+}
+
+/* ==========================================================
+   TRÈS PETITS ÉCRANS
+========================================================== */
+
+@media screen and (max-width:360px){
+
+    body{
+
+        font-size:14px;
+
+    }
+
+    .header h1{
+
+        font-size:14px;
+
+    }
+
+    .circle-btn{
+
+        width:36px;
+
+        height:36px;
+
+    }
+
+    .btn-primary,
+    .btn-reset,
+    .btn-load-more{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ==========================================================
+   PRINT
+========================================================== */
+
+@media print{
+
+    .header,
+    .search-card,
+    .left-sidebar,
+    .right-sidebar,
+    .btn-primary,
+    .btn-reset,
+    .btn-load-more{
+
+        display:none !important;
+
+    }
+
+    .content{
+
+        display:block;
+
+    }
+
+    .carte-trajet{
+
+        box-shadow:none;
+
+        border:1px solid #DDD;
+
+        margin-bottom:20px;
+
+    }
+
+}
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+        scroll-behavior:auto !important;
+
+    }
+
+}
+
+/* ==========================================================
+   END OF FILE
+========================================================== */
