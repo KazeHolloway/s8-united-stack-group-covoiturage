@@ -39,13 +39,14 @@ function formaterQuartierPrincipal(compteParQuartier) {
   if (Object.keys(compteParQuartier).length === 0) {
     return "Aucun trajet";
   }
+
   let meilleurQuartier = null;
   let meilleurCompte = -1;
 
-  for (const [quartier, compte] of Object.entries(compteParquartier)) {
+  for (const [quartier, compte] of Object.entries(compteParQuartier)) {
     if (compte > meilleurCompte) {
-      meilleurCompte = compte;
-      meilleurQuartier = quartier;
+        meilleurCompte = compte;
+        meilleurQuartier = quartier;
     }
   }
   return `${meilleurQuartier} (${meilleurCompte} trajets)`;
