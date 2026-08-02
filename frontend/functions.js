@@ -78,6 +78,20 @@ function formaterPrix(prix) {
      * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
      */
     // TODO
+
+    const nombre = Number(prix);
+
+    if (Number.isNaN(nombre) || nombre < 0) {
+        return "Prix indisponible";
+    }
+
+    // Toujours arrondi à l'entier (pas de centimes en FCFA)
+    const arrondi = Math.round(nombre);
+
+    // Séparateur de milliers "espace fine" à la française
+    const formate = arrondi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+    return `${formate} FCFA`;
 }
 
 function formaterHeure(heure) {
@@ -87,6 +101,29 @@ function formaterHeure(heure) {
      * @return {string} - "07h30"
      */
     // TODO
+
+    let heures, minutes;
+
+    if (heure instanceof Date) {
+        heures = heure.getHours();
+        minutes = heure.getMinutes();
+    } else if (typeof heure === "string" && heure.includes(":")) {
+        const [h, m] = heure.split(":");
+        heures = parseInt(h, 10);
+        minutes = parseInt(m, 10);
+    } else {
+        return "Heure invalide";
+    }
+
+    if (isNaN(heures) || isNaN(minutes)) {
+        return "Heure invalide";
+    }
+
+    const hh = String(heures).padStart(2, "0");
+    const mm = String(minutes).padStart(2, "0");
+
+    return `${hh}h${mm}`;
+
 }
 
 // ============================================================================
