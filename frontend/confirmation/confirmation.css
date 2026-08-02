@@ -1,0 +1,151 @@
+:root{
+  --navy:#16324f;
+  --navy-active:#33526f;
+  --bg:#f5f8fc;
+  --card:#ffffff;
+  --border:#e3e8ef;
+  --text:#1b2733;
+  --muted:#5c6b7a;
+  --orange:#d97a44;
+  --orange-dark:#c2652f;
+  --green:#c6f0d8;
+}
+
+*{ box-sizing:border-box; }
+
+body#page-confirmation{
+  margin:0;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  min-height:100vh;
+}
+
+/* ---------- Sidebar de navigation ---------- */
+.sidebar{
+  width:270px;
+  flex-shrink:0;
+  background:var(--navy);
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  padding:24px 0;
+}
+.sidebar-titre{
+  font-size:22px;
+  font-weight:700;
+  padding:0 24px 24px;
+  margin:0;
+}
+.sidebar a{
+  display:block;
+  color:#c9d6e3;
+  text-decoration:none;
+  padding:12px 24px;
+  font-size:15px;
+  border-radius:8px;
+  margin:2px 12px;
+}
+.sidebar a.active{
+  background:var(--navy-active);
+  color:#fff;
+  font-weight:600;
+}
+#nav-session{
+  margin-top:auto;
+  padding:16px 24px 0;
+  font-size:14px;
+  color:#c9d6e3;
+  border-top:1px solid rgba(255,255,255,0.12);
+}
+#nav-session:empty{ border-top:none; padding:0; }
+
+/* ---------- Contenu principal centré ---------- */
+main{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+}
+
+.bloc-confirmation{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:48px 40px;
+  max-width:440px;
+  width:100%;
+  text-align:center;
+}
+
+.icone-succes{
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  background:var(--green);
+  margin:0 auto 24px;
+}
+
+.bloc-confirmation h1{
+  font-size:24px;
+  margin:0 0 14px;
+}
+
+#confirmation-message{
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.5;
+  margin:0 0 32px;
+}
+
+/* ---------- Prochaines étapes ---------- */
+.prochaines-etapes h2{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:0.04em;
+  color:var(--muted);
+  margin:0 0 14px;
+  font-weight:600;
+}
+
+.etape{
+  display:block;
+  text-decoration:none;
+  border-radius:8px;
+  padding:12px;
+  font-size:15px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.etape-principale{
+  background:var(--orange);
+  color:#fff;
+}
+.etape-principale:hover{ background:var(--orange-dark); }
+
+.etape:not(.etape-principale):not(.etape-discrete){
+  background:#f2f6fa;
+  color:var(--navy);
+}
+.etape:not(.etape-principale):not(.etape-discrete):hover{
+  background:#e6ecf3;
+}
+
+.etape-discrete{
+  color:var(--muted);
+  font-weight:500;
+  margin-bottom:0;
+}
+.etape-discrete:hover{ color:var(--text); }
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  body#page-confirmation{ flex-direction:column; }
+  .sidebar{ width:100%; flex-direction:row; flex-wrap:wrap; padding:16px; }
+  .sidebar-titre{ width:100%; padding:0 8px 12px; }
+  #nav-session{ margin-top:0; border-top:none; }
+  main{ padding:24px 16px; }
+}

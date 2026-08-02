@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,55 +9,66 @@
 </head>
 <body id="page-trajet">
 
-  <!-- NAVIGATION — TODO (Dev FS3) -->
+  <!-- NAVIGATION -->
+  <nav class="sidebar">
+    <h1 class="sidebar-titre">BraCovoit</h1>
+    <a href="../accueil/index.html">Accueil</a>
+    <a href="../recherche/recherche.html">Rechercher</a>
+    <a href="trajet.html" class="active">Détail trajet</a>
+    <a href="../proposer/proposer.html">Proposer un trajet</a>
+    <a href="../mes-trajets/mes-trajets.html">Mes trajets</a>
+    <a href="../dashboard/dashboard.html">Dashboard conducteur</a>
+    <a href="../confirmation/confirmation.html">Confirmation</a>
+    <a href="../login/login.html">Authentification</a>
 
-  <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
-  <div id="nav-session"></div>
+    <!-- NE PAS MODIFIER l'id — main.js y affiche l'état de connexion -->
+    <div id="nav-session"></div>
+  </nav>
 
   <main>
     <!-- =====================================================================
-         ENTÊTE TRAJET — TODO (Dev FS3)
-         Mettre en forme le titre du trajet, l'heure, la date, le prix, le
-         commentaire éventuel et le badge de disponibilité. Le badge reçoit
-         dynamiquement une classe parmi badge-dispo / badge-limite /
-         badge-complet — prévoyez les 3 styles.
-
+         ENTÊTE TRAJET
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <section class="entete-trajet">
-      <h1 id="trajet-titre"></h1>
-      <p>Heure : <span id="trajet-heure"></span></p>
-      <p>Date : <span id="trajet-date"></span></p>
-      <p>Prix : <span id="trajet-prix"></span></p>
-      <p>Commentaire : <span id="trajet-commentaire"></span></p>
-      <span id="badge-places" class="badge"></span>
+    <section class="entete-trajet card">
+      <div class="entete-header">
+        <h1 id="trajet-titre"></h1>
+        <span id="badge-places" class="badge"></span>
+      </div>
+
+      <p class="meta">
+        <span class="meta-item">Heure : <span id="trajet-heure"></span></span>
+        <span class="meta-item">Date : <span id="trajet-date"></span></span>
+        <span class="meta-item">Prix : <span id="trajet-prix"></span></span>
+      </p>
+
+      <p class="quote">Commentaire : <span id="trajet-commentaire"></span></p>
     </section>
 
     <!-- =====================================================================
-         FICHE CONDUCTEUR — TODO (Dev FS3)
-         Mettre en forme l'encart conducteur : nom, véhicule, note,
-         expérience. Un visuel type "carte profil" est attendu.
-
+         FICHE CONDUCTEUR
          *** NE PAS MODIFIER les id ci-dessous ***
          ===================================================================== -->
-    <section class="fiche-conducteur">
+    <section class="fiche-conducteur card">
       <h2>Conducteur</h2>
-      <p>Nom : <span id="conducteur-nom"></span></p>
-      <p>Véhicule : <span id="conducteur-vehicule"></span></p>
-      <p>Note : <span id="conducteur-note"></span></p>
-      <p>Expérience : <span id="conducteur-trajets"></span></p>
+      <div class="profil">
+        <div class="avatar" aria-hidden="true"></div>
+        <div class="profil-infos">
+          <p class="profil-nom">Nom : <span id="conducteur-nom"></span></p>
+          <p>Véhicule : <span id="conducteur-vehicule"></span></p>
+          <p>Note : <span id="conducteur-note"></span></p>
+          <p>Expérience : <span id="conducteur-trajets"></span></p>
+        </div>
+      </div>
     </section>
 
     <!-- =====================================================================
-         FORMULAIRE DE RÉSERVATION — TODO (Dev FS3)
-         Mettre en forme le formulaire : nom, téléphone, bouton (désactivé
-         si trajet complet — main.js gère l'attribut disabled). Si
-         l'utilisateur est connecté, les champs nom/téléphone sont
-         pré-remplis automatiquement par main.js (mais restent modifiables).
-
+         FORMULAIRE DE RÉSERVATION
          *** NE PAS MODIFIER les id ci-dessous — main.js les utilise ***
          ===================================================================== -->
-    <form id="form-reservation">
+    <form id="form-reservation" class="card">
+      <h3>Réserver une place</h3>
+
       <label for="r-nom">Votre nom</label>
       <input type="text" id="r-nom">
 
@@ -66,13 +78,12 @@
       <button type="submit" id="btn-reserver">Réserver une place</button>
     </form>
 
-    <!-- Zone d'erreurs de validation — TODO (Dev FS3) : mettre en forme la
-         liste <ul><li> injectée par main.js en cas de formulaire invalide.
-         NE PAS MODIFIER l'id. -->
-    <div id="erreurs-form" hidden></div>
+    <!-- Zone d'erreurs de validation — NE PAS MODIFIER l'id.
+         main.js y injecte un <ul><li>...</li></ul> -->
+    <div id="erreurs-form" class="erreurs-form" hidden></div>
   </main>
 
-  <div id="erreur-globale" hidden></div>
+  <div id="erreur-globale" class="erreur-globale" hidden></div>
 
   <script src="../functions.js"></script>
   <script src="../main.js"></script>
