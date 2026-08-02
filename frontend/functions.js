@@ -174,6 +174,12 @@ function filtrerReservationsParStatut(reservations, statut) {
      * @return {Array} - réservations correspondantes
      */
     // TODO
+    // Si aucun filtre n'est choisi, on retourne toutes les réservations
+    if (!statut) {
+        return reservations;
+    }
+
+    return reservations.filter((reservation) => reservation.statut === statut);
 }
 
 function calculerTotalDepenseParPassager(reservations) {
@@ -187,6 +193,15 @@ function calculerTotalDepenseParPassager(reservations) {
      *   → 1200
      */
     // TODO
+    let total = 0;
+
+    for (let reservation of reservations) {
+        if (reservation.statut !== "annule") {
+        total = total + reservation.trajet.prix_place;
+        }
+    }
+
+    return total;
 }
 
 // ============================================================================
