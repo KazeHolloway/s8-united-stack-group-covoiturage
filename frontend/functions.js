@@ -19,24 +19,37 @@
 // ============================================================================
 
 function compterTrajetsAujourdhui(trajets, dateAujourdhui) {
-    /**
-     * Compte le nombre de trajets prévus pour la date donnée.
-     * @param {Array} trajets - liste d'objets avec une clé "date" (ex: "2026-07-27")
-     * @param {string} dateAujourdhui - date au format "AAAA-MM-JJ"
-     * @return {number} - nombre de trajets à cette date
-     * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
-     */
-    // TODO
+  /**
+   * Compte le nombre de trajets prévus pour la date donnée.
+   * @param {Array} trajets - liste d'objets avec une clé "date" (ex: "2026-07-27")
+   * @param {string} dateAujourdhui - date au format "AAAA-MM-JJ"
+   * @return {number} - nombre de trajets à cette date
+   * Exemple : compterTrajetsAujourdhui([{date:"2026-07-27"},{date:"2026-07-28"}], "2026-07-27") → 1
+   */
+  return trajets.filter((trajet) => trajet.date === dateAujourdhui).length;
 }
 
 function formaterQuartierPrincipal(compteParQuartier) {
-    /**
-     * Retourne le nom du quartier qui a le plus de trajets, sous forme lisible.
-     * @param {Object} compteParQuartier - ex: {"Bacongo": 5, "Moungali": 3, "Poto-Poto": 8}
-     * @return {string} - ex: "Poto-Poto (8 trajets)"
-     * Si l'objet est vide, retourne "Aucun trajet".
-     */
-    // TODO
+  /**
+   * Retourne le nom du quartier qui a le plus de trajets, sous forme lisible.
+   * @param {Object} compteParQuartier - ex: {"Bacongo": 5, "Moungali": 3, "Poto-Poto": 8}
+   * @return {string} - ex: "Poto-Poto (8 trajets)"
+   * Si l'objet est vide, retourne "Aucun trajet".
+   */
+  if (Object.keys(compteParQuartier).length === 0) {
+    return "Aucun trajet";
+  }
+
+  let meilleurQuartier = null;
+  let meilleurCompte = -1;
+
+  for (const [quartier, compte] of Object.entries(compteParQuartier)) {
+    if (compte > meilleurCompte) {
+        meilleurCompte = compte;
+        meilleurQuartier = quartier;
+    }
+  }
+  return `${meilleurQuartier} (${meilleurCompte} trajets)`;
 }
 
 // ============================================================================
@@ -52,6 +65,13 @@ function filtrerParQuartierDepart(trajets, quartier) {
      * Si quartier est vide ou null, retourne tous les trajets.
      */
     // TODO
+     if (!quartier || quartier.trim() === "") {
+        return trajets;
+    }
+
+    return trajets.filter(trajet =>
+        trajet.quartier_depart.toLowerCase() === quartier.toLowerCase()
+    );
 }
 
 function rechercherParMotCle(trajets, motCle) {
@@ -64,6 +84,17 @@ function rechercherParMotCle(trajets, motCle) {
      * Si motCle est vide, retourne tous les trajets.
      */
     // TODO
+     if (!motCle || motCle.trim() === "") {
+        return trajets;
+    }
+
+    const recherche = motCle.toLowerCase();
+
+    return trajets.filter(trajet => 
+        trajet.quartier_depart.toLowerCase().includes(recherche) ||
+        trajet.quartier_arrivee.toLowerCase().includes(recherche) ||
+        trajet.commentaire.toLowerCase().includes(recherche)
+    );
 }
 
 // ============================================================================
@@ -78,6 +109,20 @@ function formaterPrix(prix) {
      * Exemple : formaterPrix(500) → "500 FCFA", formaterPrix(1500) → "1 500 FCFA"
      */
     // TODO
+
+    const nombre = Number(prix);
+
+    if (Number.isNaN(nombre) || nombre < 0) {
+        return "Prix indisponible";
+    }
+
+    // Toujours arrondi à l'entier (pas de centimes en FCFA)
+    const arrondi = Math.round(nombre);
+
+    // Séparateur de milliers "espace fine" à la française
+    const formate = arrondi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+    return `${formate} FCFA`;
 }
 
 function formaterHeure(heure) {
@@ -87,6 +132,29 @@ function formaterHeure(heure) {
      * @return {string} - "07h30"
      */
     // TODO
+
+    let heures, minutes;
+
+    if (heure instanceof Date) {
+        heures = heure.getHours();
+        minutes = heure.getMinutes();
+    } else if (typeof heure === "string" && heure.includes(":")) {
+        const [h, m] = heure.split(":");
+        heures = parseInt(h, 10);
+        minutes = parseInt(m, 10);
+    } else {
+        return "Heure invalide";
+    }
+
+    if (isNaN(heures) || isNaN(minutes)) {
+        return "Heure invalide";
+    }
+
+    const hh = String(heures).padStart(2, "0");
+    const mm = String(minutes).padStart(2, "0");
+
+    return `${hh}h${mm}`;
+
 }
 
 // ============================================================================
@@ -107,6 +175,45 @@ function validerFormulaireProposer(formulaire) {
      * - prix_place > 0
      */
     // TODO
+
+    // on déclare nos constantes (tableau d'erreurs et regex pour l'heure)
+    const erreurs = [];
+    const heureValide = /^([01]\d|2[0-3]):([0-5]\d)$/.test(formulaire.heure);
+
+    // vérification des quartiers
+    if(!formulaire.quartier_depart || !formulaire.quartier_arrivee){
+        erreurs.push("Les quartiers de départ et d'arrivée sont obligatoires.");
+    }
+    else if(formulaire.quartier_depart === formulaire.quartier_arrivee){
+        erreurs.push("Le quartier de départ doit être différent du quartier d'arrivée.");
+    }
+
+    // Vérification du format de l'heure (on va utiliser l'expression régulière)
+    if (!formulaire.heure || !heureValide) {
+        erreurs.push("L'heure est obligatoire et doit être au format \"HH:MM\"."); //échapée avec back-slash pour que les griffes soient affichées.
+    }
+
+    // on convertit d'abord en number avant de vérifier, car un input HTML (même type number) return tjrs un string
+    const places = Number(formulaire.places_dispo);
+    
+    // ensuite on peut vérifier le nombre de places disponibles !
+    if( (Number.isNaN(places) ) || places < 1 || places > 8) {
+        erreurs.push("Le nombre de places doit être compris entre 1 et 8.");
+    }
+
+    // d'abord on convertit le prix d'une place en number.
+    const prix = Number(formulaire.prix_place);
+
+    // ensuite on vérifie le prix par place !
+    if (Number.isNaN(prix) || prix <= 0) {
+        erreurs.push("Le prix par place doit être supérieur à 0.");
+    }
+
+    // on return enfin le résultat de la validation (une liste d'erreurs et un booléen indiquant si le formulaire est valide ou non)
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
 }
 
 function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure) {
@@ -118,6 +225,9 @@ function formaterMessageConfirmation(nom, quartierDepart, quartierArrivee, heure
      *   → "Bonjour Marie, votre réservation pour Bacongo → Poto-Poto à 07:30 a été enregistrée."
      */
     // TODO
+
+    // on utilise les literaux de gabarits (backticks + ${}) pour formater le message de confirmation !
+    return `Bonjour ${nom}, votre réservation pour ${quartierDepart} → ${quartierArrivee} à ${heure} a été enregistrée.`;
 }
 
 // ============================================================================
@@ -132,6 +242,12 @@ function filtrerReservationsParStatut(reservations, statut) {
      * @return {Array} - réservations correspondantes
      */
     // TODO
+    // Si aucun filtre n'est choisi, on retourne toutes les réservations
+    if (!statut) {
+        return reservations;
+    }
+
+    return reservations.filter((reservation) => reservation.statut === statut);
 }
 
 function calculerTotalDepenseParPassager(reservations) {
@@ -145,6 +261,15 @@ function calculerTotalDepenseParPassager(reservations) {
      *   → 1200
      */
     // TODO
+    let total = 0;
+
+    for (let reservation of reservations) {
+        if (reservation.statut !== "annule") {
+        total = total + reservation.trajet.prix_place;
+        }
+    }
+
+    return total;
 }
 
 // ============================================================================
@@ -161,6 +286,10 @@ function calculerPourcentageOccupation(placesOccupees, placesTotales) {
      * Si placesTotales est 0, retourne 0.
      */
     // TODO
+    if (placesTotales === 0) {
+        return 0;
+    }
+    return Math.round((placesOccupees / placesTotales) * 100);
 }
 
 function getBadgeDisponibilite(placesRestantes) {
@@ -175,6 +304,13 @@ function getBadgeDisponibilite(placesRestantes) {
      * - 2+ places → {libelle: "N places", classe: "badge-dispo"}  (N = placesRestantes)
      */
     // TODO
+    if (placesRestantes === 0) {
+        return { libelle: "Complet", classe: "badge-complet" };
+    } else if (placesRestantes === 1) {
+        return { libelle: "1 place", classe: "badge-limite" };
+    } else {
+        return { libelle: `${placesRestantes} places`, classe: "badge-dispo" };
+    }
 }
 
 // ============================================================================
@@ -193,6 +329,35 @@ function validerFormulaireInscription(formulaire) {
      * - mot_de_passe obligatoire, au moins 4 caractères
      */
     // TODO
+    let erreurs = [];
+
+  if (formulaire.nom.trim() === "") {
+    erreurs.push("Le nom est obligatoire.");
+  }
+
+  if (formulaire.telephone.trim() === "") {
+    erreurs.push("Le téléphone est obligatoire.");
+  } else if (formulaire.telephone.length < 9) {
+    erreurs.push("Le téléphone doit contenir au moins 9 chiffres.");
+  }
+
+  if (formulaire.mot_de_passe.trim() === "") {
+    erreurs.push("Le mot de passe est obligatoire.");
+  } else if (formulaire.mot_de_passe.length < 4) {
+    erreurs.push("Le mot de passe doit contenir au moins 4 caractères.");
+  }
+
+  if (erreurs.length === 0) {
+    return {
+      valide: true,
+      erreurs: [],
+    };
+  }
+
+  return {
+    valide: false,
+    erreurs: erreurs,
+  };
 }
 
 function validerFormulaireLogin(formulaire) {
@@ -206,6 +371,22 @@ function validerFormulaireLogin(formulaire) {
      * - mot_de_passe obligatoire
      */
     // TODO
+    const erreurs = [];
+
+    // Vérification du téléphone
+    if (!formulaire.telephone || formulaire.telephone.trim() === "") {
+        erreurs.push("Le numéro de téléphone est obligatoire.");
+    }
+
+    // Vérification du mot de passe
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+        erreurs.push("Le mot de passe est obligatoire.");
+    }
+
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
 }
 
 // ============================================================================
