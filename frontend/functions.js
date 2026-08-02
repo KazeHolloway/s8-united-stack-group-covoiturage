@@ -329,6 +329,22 @@ function validerFormulaireLogin(formulaire) {
      * - mot_de_passe obligatoire
      */
     // TODO
+    const erreurs = [];
+
+    // Vérification du téléphone
+    if (!formulaire.telephone || formulaire.telephone.trim() === "") {
+        erreurs.push("Le numéro de téléphone est obligatoire.");
+    }
+
+    // Vérification du mot de passe
+    if (!formulaire.mot_de_passe || formulaire.mot_de_passe.trim() === "") {
+        erreurs.push("Le mot de passe est obligatoire.");
+    }
+
+    return {
+        valide: erreurs.length === 0,
+        erreurs
+    };
 }
 
 // ============================================================================
