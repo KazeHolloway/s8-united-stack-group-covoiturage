@@ -287,6 +287,35 @@ function validerFormulaireInscription(formulaire) {
      * - mot_de_passe obligatoire, au moins 4 caractères
      */
     // TODO
+    let erreurs = [];
+
+  if (formulaire.nom.trim() === "") {
+    erreurs.push("Le nom est obligatoire.");
+  }
+
+  if (formulaire.telephone.trim() === "") {
+    erreurs.push("Le téléphone est obligatoire.");
+  } else if (formulaire.telephone.length < 9) {
+    erreurs.push("Le téléphone doit contenir au moins 9 chiffres.");
+  }
+
+  if (formulaire.mot_de_passe.trim() === "") {
+    erreurs.push("Le mot de passe est obligatoire.");
+  } else if (formulaire.mot_de_passe.length < 4) {
+    erreurs.push("Le mot de passe doit contenir au moins 4 caractères.");
+  }
+
+  if (erreurs.length === 0) {
+    return {
+      valide: true,
+      erreurs: [],
+    };
+  }
+
+  return {
+    valide: false,
+    erreurs: erreurs,
+  };
 }
 
 function validerFormulaireLogin(formulaire) {
