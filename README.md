@@ -113,3 +113,26 @@ Fonctions **pures** : des paramètres entrent, une valeur sort (`return`). Pas d
 BraCovoit met en relation des habitants de Brazzaville qui font le même trajet au même moment : un conducteur qui a des places libres dans sa voiture, et des passagers qui cherchent un trajet moins cher et plus flexible qu'un taxi. Le site couvre 8 quartiers de Brazzaville (Bacongo, Poto-Poto, Moungali, Talangaï, Mfilou, Makélékélé, Ouenzé, Kintélé), avec des trajets essentiellement concentrés sur les créneaux du matin (7h-9h) et du soir (17h-19h).
 
 Bonne construction.
+
+
+## Répartition des tâches et avancement
+
+| Dev | Page(s) | Fonctions JS | Statut |
+|---|---|---|---|
+| Messi Soleil | Accueil | `compterTrajetsAujourdhui`, `formaterQuartierPrincipal` | ✅ Fait |
+| Salem Kongolo | Recherche, Mes trajets, Inscription, Login | `filtrerParQuartierDepart`, `rechercherParMotCle`, `filtrerReservationsParStatut`, `calculerTotalDepenseParPassager`, `validerFormulaireInscription`, `validerFormulaireLogin` | ✅ Fait |
+| Loïc Divin Céleste | Trajet, Confirmation | `formaterPrix`, `formaterHeure` | ✅ Fait |
+| Christophe Darly | Proposer | `validerFormulaireProposer`, `formaterMessageConfirmation` | ✅ Fait |
+| Jonathan Moïse | Dashboard | `calculerPourcentageOccupation`, `getBadgeDisponibilite` | ✅ Fait |
+| Samuel Dorval De Francis Ndinga | — | — | ❌ Néant |
+
+## Équipe Data Science
+
+| Dev | Zone | Statut |
+|---|---|---|
+| Davis Junior M'Bielo-Libeau | Recherche & disponibilité, Réservations & suivi | ✅ Fait |
+| Theresia Surya Ngoubali | Statistiques & tableau de bord | ✅ Fait |
+| Pejuce Pedrich Ndinga | Comptes & authentification | ✅ Fait |
+
+Les 17 fonctions de `backend/logic.py` sont complètes (33/33 tests pytest au vert).
+Les 27 fonctions de `frontend/functions.js` sont complètes - 27 tests réussis / 0 échoués (27 au total).
