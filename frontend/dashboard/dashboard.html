@@ -9,9 +9,9 @@
   <body id="page-dashboard">
     <!-- NAVIGATION — TODO (Dev FS6) -->
     <button id="btn-menu" class="btn-hamburger" aria-label="ouvrir le menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
     <div id="overlay-menu" class="overlay-menu"></div>
@@ -86,11 +86,16 @@
         <section class="encart-vedette">
           <h2>Trajet vedette</h2>
           <div class="encart-vedette-contenu">
-            <img
-              src="./image/carte geographique.jpeg"
-              alt="trajet grand hotel de kintélé - rond point poto-poto"
-              class="encart-vedette-image"
-            />
+            <iframe
+              src="https://www.google.com/maps?saddr=Bacongo,+2+Rue+Nkouka+Batéké, +Brazzaville&daddr=Mosquée+Sounna,+141+Rue+Bacongo,+Brazzaville&output=embed"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              frameborder="0"
+            ></iframe>
           </div>
           <p id="d-trajet-top" class="encart-vedette-texte"></p>
         </section>
@@ -102,7 +107,7 @@
 
          *** NE PAS MODIFIER l'id ***
          ===================================================================== -->
-        <section>
+        <section class="section-quartier">
           <h2>Répartition par quartier de départ</h2>
           <table class="Tableau-contenu">
             <thead>
