@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../../kadea/projet-test-repo"
+	},
+	{
+		"path": ".."
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "s8-united-stack-group-covoiturage"
+  }
+}
