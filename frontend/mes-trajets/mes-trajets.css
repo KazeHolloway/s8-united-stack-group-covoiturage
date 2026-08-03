@@ -72,6 +72,21 @@ body#page-mes-trajets {
   margin-top: 16px;
 }
 
+#nav-session a {
+  color: #cdd8e6;
+  text-decoration: underline;
+  font-size: 0.9rem;
+  margin-right: 8px;
+}
+
+#nav-session a:visited {
+  color: #cdd8e6;
+}
+
+#nav-session a:hover {
+  color: var(--blanc);
+}
+
 /*****Contenu principal **** */
 
 main {
