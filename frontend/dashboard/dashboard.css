@@ -92,7 +92,7 @@ body {
 .btn-hamburger {
   position: fixed;
   top: 2px;
-  left: 0;
+  left: 2px;
   z-index: 101;
   width: 44px;
   height: 44px;
@@ -107,17 +107,20 @@ body {
   gap: 5px;
   cursor: pointer;
 }
-.btn-hamburger span {
+
+.btn-hamburger .bar {
   width: 22px;
   height: 2px;
+  display: block;
   background: #fff;
   border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .overlay-menu {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: transparent;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -137,7 +140,7 @@ body {
   padding: 20px;
 }
 .carte-indicateur {
-  background-color: #ffffff;
+  background-color: #e8792e;
   border-radius: 15px;
   padding: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -146,7 +149,7 @@ body {
 
 .carte-indicateur .label {
   font-size: 24px;
-  color: #666;
+  color: #ffffff;
   margin-bottom: 8px;
 }
 
@@ -213,7 +216,8 @@ body {
 .encart-vedette {
   position: relative;
   margin-top: 32px;
-  padding: 24px;
+  padding: 20px;
+  height: 20%;
   border-radius: 20px;
   background: linear-gradient(135deg, #2563eb, #f97316);
   border: 2px solid transparent;
@@ -233,26 +237,26 @@ body {
 
 .encart-vedette-contenu {
   display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  margin-bottom: 5%;
 }
-.encart-vedette-image {
-  width: 160px;
-  height: 120px;
+.encart-vedette-contenu iframe {
+  position: absolute;
+  border: 0;
+  border-radius: 15px;
   object-fit: cover;
-  border-radius: 14px;
   flex-shrink: 0;
 }
 
 .encart-vedette-texte {
   flex: 1;
   min-width: 200px;
-  color: #1e293b;
+  color: #000000;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
-  margin: 0;
 }
 
 .encart-vedette:hover {
@@ -261,6 +265,10 @@ body {
 }
 
 /*TABLEAU PAR QUARTIER*/
+.section-quartier h2 {
+  padding-left: 16px;
+  margin-bottom: 12px;
+}
 .Tableau-contenu {
   width: 100%;
   border-collapse: collapse;
