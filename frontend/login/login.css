@@ -81,6 +81,15 @@ body#page-login {
   padding-top: 16px;
 }
 
+#nav-session a {
+  color: #cdd8e6;
+  font-size: 0.95rem;
+}
+#nav-session a:hover {
+  color: var(--texte-gris);
+  text-decoration: underline;
+}
+
 
 /* =========================
    MAIN
@@ -89,6 +98,7 @@ body#page-login {
 main {
   flex: 1;
   padding: 40px 48px;
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
