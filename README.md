@@ -1,8 +1,12 @@
 # BraCovoit — Covoiturage inter-quartiers, Brazzaville
 
-Bienvenue dans votre startup. Ce dépôt est le **squelette** de l'application : un mini-site de 9 pages pour organiser le covoiturage entre habitants des quartiers de Brazzaville. La structure est déjà en place ; **votre équipe complète les fonctions manquantes et construit les pages**.
+Bienvenue dans notre startup. Ce dépôt est le **squelette** de l'application : un mini-site de 9 pages pour organiser le covoiturage entre habitants des quartiers de Brazzaville. La structure est déjà en place.
 
-Vous avez **quelques jours** pour ce projet.
+## Cloner le repository dans un dossier en local
+
+```bash
+git clone "https://github.com/KazeHolloway/s8-united-stack-group-covoiturage.git"
+```
 
 ## Lancer le projet en local
 
@@ -40,8 +44,8 @@ l'API est bien ouvert et actif (pas d'erreur affichée dedans). Si vous   venez 
 
 | Parcours | Effectif | Vous complétez | Vous ne touchez PAS |
 | --- | --- | --- | --- |
-| **Data Science** | 1 à 3 personnes | `backend/logic.py` (17 fonctions) | `app.py`, `controllers.py` |
-| **Full Stack** | 7 personnes | *voir répartition ci-dessous* | `main.js` |
+| **Data Science** | 3 personnes | `backend/logic.py` (17 fonctions) | `app.py`, `controllers.py` |
+| **Full Stack** | 6 personnes | *voir répartition ci-dessous* | `main.js` |
 
 **Le nommage des champs est déjà fixé dans le code** (docstrings de `logic.py`, structure de `data/trajets.json`, IDs des éléments HTML). Vous n'avez pas à deviner ces noms — regardez les docstrings et le jeu de données pour comprendre le contrat technique attendu.
 
@@ -112,27 +116,72 @@ Fonctions **pures** : des paramètres entrent, une valeur sort (`return`). Pas d
 
 BraCovoit met en relation des habitants de Brazzaville qui font le même trajet au même moment : un conducteur qui a des places libres dans sa voiture, et des passagers qui cherchent un trajet moins cher et plus flexible qu'un taxi. Le site couvre 8 quartiers de Brazzaville (Bacongo, Poto-Poto, Moungali, Talangaï, Mfilou, Makélékélé, Ouenzé, Kintélé), avec des trajets essentiellement concentrés sur les créneaux du matin (7h-9h) et du soir (17h-19h).
 
-Bonne construction.
+# Organisation du Groupe 3
 
+**United Stack Group**
 
-## Répartition des tâches et avancement
+| Rôle | Nom |
+|---|---|
+| **Lead du groupe** | Jonathan Moïse ESAÏE COSTA |
+| **Repo Admin** | Christophe Darly MASSAMBA BOUESSO |
+| **Product Owner** | Gloire Emmanuel BALONGANA MASSENGO |
+| **Lead Fullstack** | Salem Kongolo |
+| **Lead Data** | Davis Junior M'BIELO-LIBEAU |
+| **Lead Business Analyst** | Robert Phillipe Najibe IBOVI IKAMA |
+| **Lead Marketing & Communication** | Charletta Verda KOUBOMBA |
+
+Les autres membres :
+  · **Product Manager** : Divin PENZAMOY (chargé de la Discovery) 
+  · **Business Analyst** : Hevy TSOUMOU 
+  · **Data Scientists** : Theresia Surya NGOUBALI, Pejuce Pedrich NDINGA 
+  · **Développeurs Fullstack** : Messi Soleil Elenga, Samuel Dorval De Francis NDINGA, Loïc Divin Céleste MILANDOU
+
+## Répartition des tâches et avancement de l'équipe technique
+
+### Équipe Data Science
+
+| Data Scientist | Zone | Statut |
+|---|---|---|
+| Davis Junior M'BIELO-LIBEAU | Recherche & disponibilité, Comptes & authentification | ✅ Fait |
+| Pejuce Pedrich NDINGA | Statistiques & Tableau de bord | ✅ Fait |
+| Theresia Surya NGOUBALI | Réservations & suivi | ✅ Fait |
+
+#### Toutes les fonctionnalités prévues pour la partie Data Science ont été réalisées.
+
+- 17 fonctions implémentées dans `backend/logic.py`
+- 33 / 33 tests `pytest` validés ✅
+
+### Équipe Full Stack
 
 | Dev | Page(s) | Fonctions JS | Statut |
 |---|---|---|---|
-| Messi Soleil | Accueil | `compterTrajetsAujourdhui`, `formaterQuartierPrincipal` | ✅ Fait |
+| Messi Soleil Elenga | Accueil | `compterTrajetsAujourdhui`, `formaterQuartierPrincipal` | ✅ Fait |
 | Salem Kongolo | Recherche, Mes trajets, Inscription, Login | `filtrerParQuartierDepart`, `rechercherParMotCle`, `filtrerReservationsParStatut`, `calculerTotalDepenseParPassager`, `validerFormulaireInscription`, `validerFormulaireLogin` | ✅ Fait |
-| Loïc Divin Céleste | Trajet, Confirmation | `formaterPrix`, `formaterHeure` | ✅ Fait |
-| Christophe Darly | Proposer | `validerFormulaireProposer`, `formaterMessageConfirmation` | ✅ Fait |
-| Jonathan Moïse | Dashboard | `calculerPourcentageOccupation`, `getBadgeDisponibilite` | ✅ Fait |
-| Samuel Dorval De Francis Ndinga | — | — | ❌ Néant |
+| Loïc Divin Céleste MILANDOU | Trajet, Confirmation | `formaterPrix`, `formaterHeure` | ✅ Fait |
+| Christophe Darly MASSAMBA BOUESSO | Proposer | `validerFormulaireProposer`, `formaterMessageConfirmation` | ✅ Fait |
+| Jonathan Moïse ESAÏE COSTA | Dashboard | `calculerPourcentageOccupation`, `getBadgeDisponibilite` | ✅ Fait |
+| Samuel Dorval De Francis NDINGA | — | — | ❌ |
 
-## Équipe Data Science
-
-| Dev | Zone | Statut |
-|---|---|---|
-| Davis Junior M'Bielo-Libeau | Recherche & disponibilité, Réservations & suivi | ✅ Fait |
-| Theresia Surya Ngoubali | Statistiques & tableau de bord | ✅ Fait |
-| Pejuce Pedrich Ndinga | Comptes & authentification | ✅ Fait |
-
-Les 17 fonctions de `backend/logic.py` sont complètes (33/33 tests pytest au vert).
 Les 27 fonctions de `frontend/functions.js` sont complètes - 27 tests réussis / 0 échoués (27 au total).
+
+#### Toutes les fonctionnalités prévues pour la partie Frontend ont été réalisées.
+
+- 27 fonctions JavaScript implémentées dans `frontend/functions.js`
+- 27 tests réussis / 0 échoués (27 au total)
+- Toutes les pages HTML/CSS réalisées et intégrées ✅
+
+## Résultats du projet
+
+À la fin du Sprint, le projet BraCovoit comprend :
+
+- une séparation Frontend / Backend ;
+- un frontend composé de 9 pages responsive ;
+- une API Flask fonctionnelle ;
+- 33 tests Python validés ;
+- 27 tests JavaScript validés ;
+- une démonstration complète présentée devant les Coordinateurs Pédagogiques d'Akieni Academy.
+
+### Liens
+
+- Repository : https://github.com/KazeHolloway/s8-united-stack-group-covoiturage
+- README : https://kazeholloway.github.io/s8-united-stack-group-covoiturage/
