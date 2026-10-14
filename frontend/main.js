@@ -8,7 +8,9 @@
  * résultat dans le DOM. Vous n'avez rien à modifier ici.
  */
 
-const API = "http://localhost:5000/api";
+const API = ["localhost", "127.0.0.1", ""].includes(location.hostname)
+    ? "http://localhost:5000/api"
+    : "https://bracovoit-api.onrender.com/api";
 
 async function api(path, options = {}) {
     const r = await fetch(`${API}${path}`, options);
